@@ -1,0 +1,29 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+  	<groupId>edu.pnu.stemlab</groupId>
+  	<artifactId>indoormogen</artifactId>
+  	<version>1.0.0-SNAPSHOT</version>
+  </parent>
+  
+  <groupId>edu.pnu.stemlab</groupId>
+  <artifactId>ui</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  
+  <dependencies>
+  	<dependency>
+  		<groupId>edu.pnu.stemlab</groupId>
+  		<artifactId>core</artifactId>
+  		<version>1.0.0-SNAPSHOT</version>
+  	</dependency>
+  	
+  	<!-- https://mvnrepository.com/artifact/org.eclipse.swt/org.eclipse.swt.win32.win32.x86 -->
+	<dependency>
+	    <groupId>org.eclipse.swt</groupId>
+	    <artifactId>org.eclipse.swt.win32.win32.x86</artifactId>
+	    <version>4.3</version>
+	</dependency>
+  	
+  	
+  </dependencies>
+</project>
