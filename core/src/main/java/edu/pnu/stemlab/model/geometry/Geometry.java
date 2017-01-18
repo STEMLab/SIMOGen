@@ -29,5 +29,43 @@ package edu.pnu.stemlab.model.geometry;
  *
  */
 public interface Geometry {
-
+	boolean isSimple();
+	
+	boolean isCycle();
+	
+	boolean distance(Geometry geometry);
+	
+	Envelope getEnvelope();
+	
+	Point getCentroid();
+	
+	Point getRepresentativePoint();
+	
+	Geometry getBoundary();
+	
+	Geometry getConvexHull();
+	
+	Geometry getBuffer(double distance);
+	
+	Geometry clone() throws CloneNotSupportedException;
+	
+	boolean disjoint(Geometry g);
+	
+	boolean touches(Geometry g);
+	
+	boolean intersects(Geometry g);
+	
+	boolean crosses(Geometry g);
+	
+	boolean within(Geometry g);
+	
+	boolean contains(Geometry g);
+	
+	boolean overlaps(Geometry g);
+	
+	boolean covers(Geometry g);
+	
+	boolean coveredBy(Geometry g);
+	
+	boolean equals(Geometry g);
 }

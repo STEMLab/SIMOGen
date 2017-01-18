@@ -24,10 +24,15 @@
  */
 package edu.pnu.stemlab.model.geometry;
 
+import java.util.Set;
+
 /**
  * @author hgryoo
  *
  */
 public interface Polygon extends Geometry {
-
+	
+	Curve getExterior();
+	
+	Set<Curve> getInteriors();	
 }

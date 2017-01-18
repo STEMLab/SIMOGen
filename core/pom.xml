@@ -8,11 +8,8 @@
 		<artifactId>indoormogen</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
-
-	<groupId>edu.pnu.stemlab</groupId>
 	<artifactId>core</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
-
+	
 	<repositories>
 		<repository>
 			<id>osgeo-repository</id>

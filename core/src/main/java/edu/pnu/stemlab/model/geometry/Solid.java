@@ -24,10 +24,15 @@
  */
 package edu.pnu.stemlab.model.geometry;
 
+import java.util.Set;
+
 /**
  * @author hgryoo
  *
  */
 public interface Solid extends Geometry {
-
+	
+	Polygon getExterior();
+	
+	Set<Polygon> getInteriors();
 }

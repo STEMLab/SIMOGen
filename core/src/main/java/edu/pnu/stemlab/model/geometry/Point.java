@@ -29,5 +29,14 @@ package edu.pnu.stemlab.model.geometry;
  *
  */
 public interface Point extends Geometry {
-
+	
+	//Bearing getBearing(Point toPoint);
+	
+	double getX();
+	
+	double getY();
+	
+	double getZ();
+	
+	
 }
