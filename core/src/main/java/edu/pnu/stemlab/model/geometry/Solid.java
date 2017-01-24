@@ -26,6 +26,8 @@ package edu.pnu.stemlab.model.geometry;
 
 import java.util.Set;
 
+import org.opengis.geometry.primitive.Shell;
+
 /**
  * @author hgryoo
  *
