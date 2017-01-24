@@ -1,7 +1,7 @@
 /**
  * 
  */
-package edu.pnu.stemlab.model.geometry.implementation;
+package edu.pnu.stemlab.model.geometry.impl;
 
 import edu.pnu.stemlab.model.geometry.Envelope;
 import edu.pnu.stemlab.model.geometry.Geometry;

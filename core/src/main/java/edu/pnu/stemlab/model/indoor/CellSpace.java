@@ -1,7 +1,7 @@
 /**
  * 
  */
-package edu.pnu.stemlab.model;
+package edu.pnu.stemlab.model.indoor;
 
 import java.util.Map;
 import java.util.Set;

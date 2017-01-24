@@ -32,7 +32,7 @@ import java.util.Set;
  */
 public interface Solid extends Geometry {
 	
-	Polygon getExterior();
+	Shell getExterior();
 	
-	Set<Polygon> getInteriors();
+	Set<Shell> getInteriors();
 }

@@ -32,6 +32,8 @@ public interface Point extends Geometry {
 	
 	//Bearing getBearing(Point toPoint);
 	
+        Coordinate getCoordinate();
+    
 	double getX();
 	
 	double getY();

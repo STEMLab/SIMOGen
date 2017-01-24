@@ -1,7 +1,7 @@
 /**
  * 
  */
-package edu.pnu.stemlab.model;
+package edu.pnu.stemlab.model.indoor;
 
 /**
  * @author hgryoo

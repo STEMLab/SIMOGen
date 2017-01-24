@@ -29,11 +29,16 @@ package edu.pnu.stemlab.model.geometry;
  *
  */
 public interface Geometry {
+    
 	boolean isSimple();
 	
 	boolean isCycle();
 	
 	boolean distance(Geometry geometry);
+	
+	int getDimension();
+	
+	int getCoordinateDimension();
 	
 	Envelope getEnvelope();
 	

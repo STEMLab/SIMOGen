@@ -32,7 +32,7 @@ import java.util.Set;
  */
 public interface Polygon extends Geometry {
 	
-	Curve getExterior();
+	Ring getExterior();
 	
-	Set<Curve> getInteriors();	
+	Set<Ring> getInteriors();
 }
