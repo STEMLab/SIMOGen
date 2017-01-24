@@ -68,7 +68,7 @@ public abstract class GeometryImpl implements Geometry {
 	 */
 	public boolean disjoint(Geometry g) {
 		// TODO Auto-generated method stub
-		return false;
+		return !intersects(g);
 	}
 
 	/* (non-Javadoc)
@@ -76,7 +76,7 @@ public abstract class GeometryImpl implements Geometry {
 	 */
 	public boolean touches(Geometry g) {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	/* (non-Javadoc)

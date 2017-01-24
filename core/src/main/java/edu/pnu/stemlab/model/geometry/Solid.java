@@ -26,13 +26,15 @@ package edu.pnu.stemlab.model.geometry;
 
 import java.util.Set;
 
+import org.opengis.geometry.primitive.Shell;
+
 /**
  * @author hgryoo
  *
  */
 public interface Solid extends Geometry {
 	
-	Polygon getExterior();
+	Shell getExterior();
 	
-	Set<Polygon> getInteriors();
+	Set<Shell> getInteriors();
 }
