@@ -11,12 +11,24 @@ import edu.pnu.stemlab.model.geometry.Point;
  * @author hgryoo
  *
  */
-public abstract class GeometryImpl implements Geometry {
-
+public abstract class JTSGeometryImpl implements Geometry {
+    
+        private com.vividsolutions.jts.geom.Geometry jtsGeom;
+        
+        public JTSGeometryImpl(com.vividsolutions.jts.geom.Geometry geom) {
+            this.jtsGeom = geom;
+        }
+        
+        protected com.vividsolutions.jts.geom.Geometry getJTSGeometry() {
+            return jtsGeom;
+        }
+        
 	/* (non-Javadoc)
 	 * @see edu.pnu.stemlab.model.geometry.Geometry#isSimple()
 	 */
-	public abstract boolean isSimple();
+	public boolean isSimple() {
+	    return getJTSGeometry().isSimple();
+	}
 
 	/* (non-Javadoc)
 	 * @see edu.pnu.stemlab.model.geometry.Geometry#isCycle()

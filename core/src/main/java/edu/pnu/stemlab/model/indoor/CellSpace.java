@@ -6,6 +6,9 @@ package edu.pnu.stemlab.model.indoor;
 import java.util.Map;
 import java.util.Set;
 
+import edu.pnu.stemlab.model.geometry.Polygon;
+import edu.pnu.stemlab.model.geometry.Solid;
+
 /**
  * @author hgryoo
  *
@@ -13,9 +16,9 @@ import java.util.Set;
 public interface CellSpace {
 	String getId();
 	
-	Object getGeometry2D();
+	Polygon getGeometry2D();
 	
-	Object getGeometry3D();
+	Solid getGeometry3D();
 
 	PrimalSpace getPrimalSpace();
 	

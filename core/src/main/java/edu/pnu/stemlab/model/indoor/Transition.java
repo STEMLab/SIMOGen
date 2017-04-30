@@ -6,15 +6,16 @@ package edu.pnu.stemlab.model.indoor;
 import java.util.Map;
 import java.util.Set;
 
+import edu.pnu.stemlab.model.geometry.Curve;
+
 /**
  * @author hgryoo
  *
  */
 public interface Transition {
-
 	String getId();
 	
-	Object getGeometry();
+	Curve getGeometry();
 	
 	Double getWeight();
 	

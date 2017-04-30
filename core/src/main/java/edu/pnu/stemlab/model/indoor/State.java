@@ -6,6 +6,8 @@ package edu.pnu.stemlab.model.indoor;
 import java.util.Map;
 import java.util.Set;
 
+import edu.pnu.stemlab.model.geometry.Point;
+
 /**
  * @author hgryoo
  * 
@@ -13,7 +15,7 @@ import java.util.Set;
 public interface State {
 	String getId();
 	
-	Object getGeometry();
+	Point getGeometry();
 	
 	SpaceLayer getSpaceLayer();
 	
