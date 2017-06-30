@@ -114,7 +114,7 @@ public class SimpleIndoorGMLHandlerNG extends DefaultHandler {
             builder.addState(s);
             neighbors.clear();
             duality = null;
-            
+            userData = null;
         } else if(qName.contains("Transition")) {
             //Transition t = new Transition(id, l);
             
