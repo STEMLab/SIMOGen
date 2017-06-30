@@ -28,14 +28,25 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+
+
 import com.vividsolutions.jts.geom.Coordinate;
 
 import edu.pnu.model.History;
+import edu.pnu.model.SpaceLayer;
+import edu.pnu.model.primal.CellSpace;
+
 
 /**
  * @author hgryoo
@@ -198,5 +209,79 @@ public class SimpleMovingFeaturesExporter {
         builder.append("</mf:MovingFeatures>");
         
         return builder.toString();
+    }
+
+public void exportPostGIS(SpaceLayer sl) throws IOException, SQLException {
+	 Statement st = null;
+	 Connection cx = null; 
+
+	 
+   
+         // connect to template1 instead
+         String url = "jdbc:postgresql" + "://" + "localhost" + ":" + "5432" + "/zone";
+
+         cx = DriverManager.getConnection(url, "postgres", "gis");
+         
+         
+         for( Map.Entry<String, List<History>> elem : trajectory.entrySet() ){
+        	  try {  
+        		  String sql = "insert into lotte values(";
+        		  st = cx.createStatement();
+             String mvId = elem.getKey();
+             List<History> history = elem.getValue();
+             
+             History prev = null;
+             History next = null;
+             for(int i = 0; i < history.size() - 1; i++) {
+            	 
+                 prev = history.get(i);
+                 next = history.get(i + 1);
+                 
+                 CellSpace prevc = sl.getCellSpace(prev.getCoord());
+                 CellSpace nextc = sl.getCellSpace(next.getCoord());
+                 String prevcell = "";
+                 String nextcell = "c";
+                 if(prevc != null) {
+                	 prevcell = prevc.getId();
+                 }
+                 if(nextc != null) {
+                	 nextcell = nextc.getId();
+                 }
+                 
+                 
+                 if(i == 0) {
+                	 sql += "'" + mvId + "',";
+                	 sql += "'" + prevcell + "',";
+                	 sql += prev.getTime() + ",";
+                	
+                 }if(!prevcell.equalsIgnoreCase(nextcell)) {
+                	 sql += next.getTime() + ");";
+                     sql += "insert into pnu values(";
+                     sql += "'" + mvId + "',";
+                	 sql += "'" + nextcell + "',";
+                	 sql +=  next.getTime() + ",";
+                 }
+                 prev = next;
+             }
+             
+        	 sql += next.getTime() + ");";
+        	 System.out.println(sql);
+        	 //st.addBatch(sql);
+             st.executeUpdate(sql);
+                
+        	  } catch (SQLException e) {
+        		  System.out.println(e.getMessage());
+        		  continue;
+        	         //throw new IOException("Failed to create the target database", e);
+        	     }
+         }
+         
+         //st.executeBatch();
+      //finally {
+    	 st.close();
+    	 cx.close();
+     //}
+        
+        
     }
 }

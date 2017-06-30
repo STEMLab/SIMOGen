@@ -49,8 +49,8 @@ import edu.pnu.movement.Stop;
 public class Generator {
     private static final Logger LOGGER = Logger.getLogger(Generator.class.getName());
     
-    public static final double SAMPLING = 1.0f;
-    public static final double END = 1800;
+    public static final double SAMPLING = 2.0f;
+    public static final double END = 1000;
     
     private Date startTime;
     private List<State> entrances = new ArrayList<State>();

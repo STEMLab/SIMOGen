@@ -80,7 +80,7 @@ public class MovingObject {
     }
     
     public MovingObject(Generator gen, Coordinate coord) {
-        this.life = new Random().nextInt(1000) + 3000;
+        this.life = new Random().nextInt(1000);// + 3000;
         this.velocity = 1.0f;
         this.gen = gen;
     }

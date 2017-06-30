@@ -245,12 +245,12 @@ public class SpaceLayer implements CellSpaceIndex {
             for(CellSpace cell : flatEqual) {
                 double dist = Distance3DOp.distance(cell.getDuality().getPoint(), qPoint);
                 double dz = cell.getGeometry2D().getCoordinate().z - c.z;
-                if(Math.abs(dz) < 3) {
+                //if(Math.abs(dz) < 3) {
                     if(dist < minValue) {
                         minValue = dist;
                         min = cell;
                     }
-                }
+                //}
             }
             result = min;
             return result;

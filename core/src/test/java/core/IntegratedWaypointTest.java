@@ -36,6 +36,7 @@ import edu.pnu.core.Clock;
 import edu.pnu.core.Generator;
 import edu.pnu.io.SimpleIndoorGMLImporter;
 import edu.pnu.io.SimpleMovingFeaturesCSVExporter;
+import edu.pnu.io.SimpleMovingFeaturesExporter;
 import edu.pnu.model.SpaceLayer;
 import edu.pnu.model.dual.State;
 import edu.pnu.model.movingobject.ClientObject;
@@ -53,7 +54,7 @@ private SpaceLayer layer;
     
     @Before
     public void setUp() throws Exception {
-        SimpleIndoorGMLImporter importer = new SimpleIndoorGMLImporter("src/test/resources/SAMPLE_DATA_LWM_3D.gml");
+        SimpleIndoorGMLImporter importer = new SimpleIndoorGMLImporter("src/main/resources/shopping2.gml");
         layer = importer.getSpaceLayer();
     }
     
@@ -92,8 +93,8 @@ private SpaceLayer layer;
         Clock clock = gen.getClock();
         while(gen.advance()) {
             
-            if(clock.getTime() < 300) {
-                if(clock.getTime() % 4 == 0) {
+        	/*if(clock.getTime() < 300) {
+                if(clock.getTime() % 100 == 0) {
                     Iterator sit = layer.getEntrances().iterator();
                     while(sit.hasNext()) {
                         if(new Random().nextDouble() < 0.5) {
@@ -105,11 +106,11 @@ private SpaceLayer layer;
                         }
                     }
                 }
-            } else {
+            } else {*/
                 
-                if(clock.getTime() < gen.END - 200) {
+                if(clock.getTime() < gen.END ){//- 200) {
                 
-                    if(clock.getTime() % 5 == 0) {
+                    if(clock.getTime() % 80 == 0) {
                         Iterator sit = layer.getEntrances().iterator();
                         while(sit.hasNext()) {
                             if(new Random().nextDouble() < 0.5) {
@@ -125,7 +126,7 @@ private SpaceLayer layer;
                         }
                     }
                 }
-            }
+            //}
             
             
             /*if(count < 10) {
@@ -150,13 +151,13 @@ private SpaceLayer layer;
         System.out.println(empolyee + "," + client);
         System.out.println(sum / clock.getTime());
         
-        SimpleMovingFeaturesCSVExporter csvExt = new SimpleMovingFeaturesCSVExporter("realTest");
+        SimpleMovingFeaturesExporter csvExt = new SimpleMovingFeaturesExporter("realTest");
         Iterator<MovingObject> it = gen.getMovingObjectIterator();
         while(it.hasNext()) {
             MovingObject m = it.next();
             csvExt.addHistory(m.getId(), m.getHistory());
         }
-        csvExt.bufferedExport("target/integrated_walk.csv");
+        csvExt.exportPostGIS(layer);
     }
 
 }

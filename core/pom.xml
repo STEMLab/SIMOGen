@@ -69,6 +69,8 @@
 			<groupId>earcut4j</groupId>
 		    <artifactId>earcut4j</artifactId>
 		    <version>2.1.1</version>
+		    <scope>system</scope>
+    		<systemPath>${project.basedir}/lib/earcut4j-2.1.1.jar</systemPath>
 		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/javax.media/jai_core -->
