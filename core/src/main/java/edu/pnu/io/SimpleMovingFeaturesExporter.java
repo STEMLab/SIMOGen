@@ -256,7 +256,7 @@ public void exportPostGIS(SpaceLayer sl) throws IOException, SQLException {
                 	
                  }if(!prevcell.equalsIgnoreCase(nextcell)) {
                 	 sql += next.getTime() + ");";
-                     sql += "insert into pnu values(";
+                     sql += "insert into lotte values(";
                      sql += "'" + mvId + "',";
                 	 sql += "'" + nextcell + "',";
                 	 sql +=  next.getTime() + ",";
