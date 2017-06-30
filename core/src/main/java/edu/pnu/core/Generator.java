@@ -50,7 +50,7 @@ public class Generator {
     private static final Logger LOGGER = Logger.getLogger(Generator.class.getName());
     
     public static final double SAMPLING = 2.0f;
-    public static final double END = 1000;
+    public static final double END = 5000;
     
     private Date startTime;
     private List<State> entrances = new ArrayList<State>();
@@ -104,6 +104,7 @@ public class Generator {
             for(MovingObject m : moList) {
                 if(!m.getDead()) {
                     m.update(SAMPLING);
+                    System.out.println(m.getCurrentCellSpace().getId() + " , " + m.getCurrentPosition());
                 }
                 else {
                     dead.add(m);
@@ -112,6 +113,7 @@ public class Generator {
                     dead.add(m);
                 }*/
             }
+            System.out.println();
             return true;
         /*} else {
             return false;

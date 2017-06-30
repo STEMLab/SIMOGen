@@ -187,14 +187,16 @@ public class RandomWayPointNG implements Movement {
                     next = null;
                     mo.setCurrentCellSpace(getNextState().getDuality());
                     
+                    /*
                     String type = (String) mo.getCurrentCellSpace().getUserData().get("USAGE");
                     if(type.equalsIgnoreCase("ROOM") || type.equalsIgnoreCase("DOOR")) {
-                        mo.setVelocity(0.4);
+                        mo.setVelocity(0.4 * mo.getVelocity());
                     } else if(type.equalsIgnoreCase("CORRIDOR")) {
-                        mo.setVelocity(1.0);
+                        mo.setVelocity(1.0 * mo.getVelocity());
                     } else {
                         mo.setVelocity(1.5);
                     }
+                    */
                     
                     idx++;
                 } else {
