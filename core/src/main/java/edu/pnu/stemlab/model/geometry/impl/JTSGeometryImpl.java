@@ -19,7 +19,7 @@ public abstract class JTSGeometryImpl implements Geometry {
             this.jtsGeom = geom;
         }
         
-        protected com.vividsolutions.jts.geom.Geometry getJTSGeometry() {
+        public com.vividsolutions.jts.geom.Geometry getJTSGeometry() {
             return jtsGeom;
         }
         

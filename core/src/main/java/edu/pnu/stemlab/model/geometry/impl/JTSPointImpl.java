@@ -45,6 +45,7 @@ public class JTSPointImpl extends JTSGeometryImpl implements edu.pnu.stemlab.mod
     }
 
     public Coordinate getCoordinate() {
+        com.vividsolutions.jts.geom.Coordinate jtsCoord = getJTSGeometry().getCoordinate();
         
     }
 
