@@ -23,5 +23,6 @@ package edu.pnu.query.indoordistance;
 public interface Door {
 
     String getId();
-
+    
+    Object getGeometry();
 }

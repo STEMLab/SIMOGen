@@ -17,13 +17,16 @@
 package edu.pnu.query.indoordistance;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import com.github.davidmoten.rx.util.Pair;
 import com.google.common.collect.MinMaxPriorityQueue;
+import com.vividsolutions.jts.geom.LineString;
+import com.vividsolutions.jts.geom.Point;
 
-import edu.pnu.model.primal.CellSpace;
+import edu.pnu.stemlab.model.geometry.Coordinate;
 
 /**
  * @author hgryoo
@@ -31,24 +34,29 @@ import edu.pnu.model.primal.CellSpace;
  */
 public class IndoorDistance {
     
-    public static final double INF = Double.MAX_VALUE;
-    
-    private Map<String, Partition> partitions;
-    private Map<String, Door> doors;
-    
+    DistanceGraph distanceGraph;
     
     public double getIntraDoortoDoorDistance(Partition p, Door i, Door j) {
-        return INF;
+        double dist = DistanceGraph.INF;
+        if(i.equals(j)) {
+            List<Door> connected = distanceGraph.getConnectedDoors(p);
+            if(connected.contains(i) && connected.contains(j)) {
+                dist = -1;
+            }
+        } else if(distanceGraph.getEnterableDoors(p).contains(i) && distanceGraph.getLeavableDoors(p).contains(j)) {
+            dist = 0;
+        }
+        return dist;
     }
     
     public double getPointtoPointDistance(IndoorPosition so, IndoorPosition dest) {
-        Partition sp = getHostPartition(so);
-        Partition tp = getHostPartition(so);
-        double dist = INF;
+        Partition sp = distanceGraph.getHostPartition(so);
+        Partition tp = distanceGraph.getHostPartition(so);
+        double dist = DistanceGraph.INF;
         
-        for(Door ds : getLeavableDoors(sp)) {
+        for(Door ds : distanceGraph.getLeavableDoors(sp)) {
             double dist1 = getShortestIntraPartitionDist(so, ds);
-            for(Door dt : getEnterableDoors(tp)) {
+            for(Door dt : distanceGraph.getEnterableDoors(tp)) {
                 double dist2 = getShortestIntraPartitionDist(dest, dt);
                 double d2d = getDoortoDoorDistance(ds, dt);
                 if(dist > dist1 + d2d + dist2) {
@@ -65,13 +73,17 @@ public class IndoorDistance {
                 .maximumSize(1000)
                 .create();
                 
-        double[] dist = new double[doors.size()];
-        String[] prev = new String[doors.size()];
-        boolean[] visited = new boolean[doors.size()];
+        double[] dist = new double[distanceGraph.numDoors()];
+        String[] prev = new String[distanceGraph.numDoors()];
+        boolean[] visited = new boolean[distanceGraph.numDoors()];
         Map<String, Integer> idx = new HashMap<String, Integer>();
         
         int i = 0;
-        for(String dId : doors.keySet()) {
+        
+        Iterator<Door> it = distanceGraph.getDoors();
+        while(it.hasNext()) {
+            Door d = it.next();
+            String dId = d.getId();
             if(dId.equalsIgnoreCase(ds.getId())) {
                 dist[i] = 0.0d;
             } else {
@@ -86,19 +98,21 @@ public class IndoorDistance {
             h.add(pair);
         }
         
+        double result = DistanceGraph.INF;
         while(!h.isEmpty()) {
             Pair<String,Double> di = h.poll();
             if(di.a().equalsIgnoreCase(dt.getId())) {
-                return dist[ idx.get(di.a()) ];
+                result = dist[ idx.get(di.a()) ];
+                break;
             }
             
             visited[ idx.get(di.a()) ] = true;
-            List<Partition> parts = getLeavablePartition(doors.get(di.a()));
+            List<Partition> parts = distanceGraph.getLeavablePartition(distanceGraph.getDoorById(di.a()));
             for(Partition p : parts) {
-                for(Door dj : getLeavableDoors(p)) {
+                for(Door dj : distanceGraph.getLeavableDoors(p)) {
                     double diDist = dist[ idx.get(di.a())];
                     double djDist = dist[ idx.get(dj.getId())];
-                    double intraD2DDist = getIntraDoortoDoorDistance(p, doors.get(di.a()), dj);
+                    double intraD2DDist = getIntraDoortoDoorDistance(p, distanceGraph.getDoorById(di.a()), dj);
                     
                     if(diDist + intraD2DDist < djDist) {
                         djDist = diDist + intraD2DDist;
@@ -109,33 +123,17 @@ public class IndoorDistance {
             }
         }
         
-        return INF;
+        return result;
     }
 
-    public double getShortestIntraPartitionDist(IndoorPosition p, Door d) {
+    public double getShortestIntraPartitionDist(IndoorPosition ip, Door d) {
+        Point p = (Point) ip.getGeometry();
+        Coordinate pC = (Coordinate) p.getCoordinate();
         
-        return INF;
-    }
-    
-    private Partition getHostPartition(IndoorPosition so) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    public List<Door> getEnterableDoors(Partition p) {
-        return null;
-    }
-    
-    public List<Door> getLeavableDoors(Partition p) {
-        return null;
-    }
-    
-    public List<Partition> getEnterablePartition(Door d) {
-        return null;
-    }
-    
-    public List<Partition> getLeavablePartition(Door d) {
-        return null;
+        LineString dGeom = (LineString) d.getGeometry();
+        Coordinate dCen = (Coordinate) dGeom.getCentroid().getCoordinate();
+        
+        return pC.distance(dCen);
     }
     
 }

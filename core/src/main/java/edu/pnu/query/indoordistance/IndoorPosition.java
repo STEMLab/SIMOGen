@@ -22,4 +22,6 @@ package edu.pnu.query.indoordistance;
  */
 public interface IndoorPosition {
 
+    Object getGeometry();
+    
 }

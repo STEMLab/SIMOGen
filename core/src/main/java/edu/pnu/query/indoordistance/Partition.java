@@ -21,5 +21,9 @@ package edu.pnu.query.indoordistance;
  *
  */
 public interface Partition {
-
+    boolean is3D();
+    
+    Object getGeometry();
+    
+    Object getFloor();
 }
