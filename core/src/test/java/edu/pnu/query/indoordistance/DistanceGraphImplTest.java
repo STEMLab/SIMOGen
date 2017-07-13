@@ -16,20 +16,39 @@
  */
 package edu.pnu.query.indoordistance;
 
-import java.util.List;
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * @author hgryoo
  *
  */
-public interface Partition {
-    boolean is3D();
+public class DistanceGraphImplTest {
     
-    String getId();
     
-    Object getGeometry();
     
-    Object getFloor();
-    
-    List<Door> getAdjacencentDoors();
+    /**
+     * @throws java.lang.Exception
+     */
+    @Before
+    public void setUp() throws Exception {
+        
+    }
+
+    /**
+     * @throws java.lang.Exception
+     */
+    @After
+    public void tearDown() throws Exception {
+        
+    }
+
+    @Test
+    public void test() {
+        fail("Not yet implemented");
+    }
+
 }

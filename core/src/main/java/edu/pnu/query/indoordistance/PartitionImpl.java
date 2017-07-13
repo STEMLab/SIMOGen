@@ -18,18 +18,42 @@ package edu.pnu.query.indoordistance;
 
 import java.util.List;
 
+import com.vividsolutions.jts.geom.Polygon;
+
 /**
  * @author hgryoo
  *
  */
-public interface Partition {
-    boolean is3D();
+public class PartitionImpl implements Partition {
     
-    String getId();
+    private String id;
+    private Polygon geom;
+    private List<Door> doors;
     
-    Object getGeometry();
+    public PartitionImpl(String id, Polygon geom, List<Door> ds) {
+        this.id = id;
+        this.geom = geom;
+        this.doors = ds;
+    }
     
-    Object getFloor();
+    public boolean is3D() {
+        return false;
+    }
+
+    public String getId() {
+        return id;
+    }
     
-    List<Door> getAdjacencentDoors();
+    public Object getGeometry() {
+        return geom;
+    }
+
+    public Object getFloor() {
+        return geom;
+    }
+
+    public List<Door> getAdjacencentDoors() {
+        return doors;
+    }
+
 }

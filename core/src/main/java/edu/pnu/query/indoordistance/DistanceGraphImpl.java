@@ -37,6 +37,15 @@ public class DistanceGraphImpl implements DistanceGraph {
     private Map<String, Partition> partitions;
     private Map<String, Door> doors;
     
+    public DistanceGraphImpl(List<Partition> ps, List<Door> ds) {
+        for(Partition p : ps) {
+            partitions.put(p.getId(), p);
+        }        
+        for(Door d : ds) {
+            doors.put(d.getId(), d);
+        }
+    }
+    
     public double getIntraDoortoDoorDistance(Partition p, Door i, Door j) {
         double dist = INF;
         if(i.equals(j)) {
