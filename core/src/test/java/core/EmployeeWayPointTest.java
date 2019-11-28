@@ -49,7 +49,7 @@ import edu.pnu.util.StateDijkstraPathFinder;
  * @author hgryoo
  *
  */
-public class EmployeeWaypointTest {
+public class EmployeeWayPointTest {
 
 private SpaceLayer layer;
     
@@ -93,7 +93,6 @@ private SpaceLayer layer;
         Clock clock = gen.getClock();
         
         while(gen.advance()) {
-            
             if(clock.getTime() < 300) {
                 if(clock.getTime() % 5 == 0) {
                     sit = layer.getEntrances().iterator();

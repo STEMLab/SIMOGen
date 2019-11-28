@@ -61,7 +61,8 @@ private SpaceLayer layer;
         MovingObject mo = new MovingObject(gen, s);
         gen.addMovingObject(mo);*/
         
-        int count = 0;
+        int moCount = 0;
+        double genProb = 0.2;
         Clock clock = gen.getClock();
         while(gen.advance()) {
             
@@ -70,34 +71,14 @@ private SpaceLayer layer;
                     Iterator sit = layer.getEntrances().iterator();
                     while(sit.hasNext()) {
                         State ent = (State) sit.next();
-                        if(new Random().nextDouble() < 0.2 && count < 30 ) {
+                        if(new Random().nextDouble() <genProb && moCount < 30 ) {
                             MovingObject mo = new ClientObject(gen, ent);
                             gen.addMovingObject(mo);
-                            count++;
+                            moCount++;
                         }
                     }
                 }
             }
-            
-            /*if(count < 10) {
-                sit = layer.getEntrances().iterator();
-                while(sit.hasNext()) {
-                    State s = (State) sit.next();
-                    State random = getRandomState(s);
-                    MovingObject mo = new EmployeeObject(gen, s, random);
-                    gen.addMovingObject(mo);
-                }
-            }
-            
-            
-            
-            count++;*/
-            /*if(new Random().nextInt(10) < 4 && idx < 100) {
-                for(State s : ents) {
-                    MovingObject m1 = new MovingObject(gen, s);
-                    gen.addMovingObject(m1);
-                }
-            }*/
         }
         
         SimpleMovingFeaturesCSVExporter csvExt = new SimpleMovingFeaturesCSVExporter("realTest");
