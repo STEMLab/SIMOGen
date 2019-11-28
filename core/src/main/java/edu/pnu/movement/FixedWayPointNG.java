@@ -150,7 +150,9 @@ public class FixedWayPointNG implements Movement {
                 
                 mo.setCurrentCellSpace(getNextState().getDuality());
                 String type = (String) mo.getCurrentCellSpace().getUserData().get("USAGE");
-                if(type.equalsIgnoreCase("ROOM")) {
+                if(type == null) {
+                    mo.setVelocity(1.0);
+                } else if(type.equalsIgnoreCase("ROOM")) {
                     mo.setVelocity(0.6);
                 } else if(type.equalsIgnoreCase("CORRIDOR")) {
                     mo.setVelocity(1.0);

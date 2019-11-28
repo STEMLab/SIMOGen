@@ -188,7 +188,9 @@ public class RandomWayPointNG implements Movement {
                     mo.setCurrentCellSpace(getNextState().getDuality());
                     
                     String type = (String) mo.getCurrentCellSpace().getUserData().get("USAGE");
-                    if(type.equalsIgnoreCase("ROOM") || type.equalsIgnoreCase("DOOR")) {
+                    if(type == null) {
+                        mo.setVelocity(1.0);
+                    } else if(type.equalsIgnoreCase("ROOM") || type.equalsIgnoreCase("DOOR")) {
                         mo.setVelocity(0.4);
                     } else if(type.equalsIgnoreCase("CORRIDOR")) {
                         mo.setVelocity(1.0);

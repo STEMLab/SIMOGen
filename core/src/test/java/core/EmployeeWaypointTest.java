@@ -55,7 +55,7 @@ private SpaceLayer layer;
     
     @Before
     public void setUp() throws Exception {
-        SimpleIndoorGMLImporter importer = new SimpleIndoorGMLImporter("src/test/resources/SAMPLE_LWM_AVENUEL.gml");
+        SimpleIndoorGMLImporter importer = new SimpleIndoorGMLImporter("src/main/resources/201Building_IndoorGML.xml");
         layer = importer.getSpaceLayer();
     }
     

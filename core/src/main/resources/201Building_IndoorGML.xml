@@ -21,7 +21,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S1">
                                     <gml:description>
-                                        storey="1":
+                                        storey="1":usage="entrance":
                                     </gml:description>
                                     <gml:name>
                                         S1
@@ -252,7 +252,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S13">
                                     <gml:description>
-                                        storey="1":indoor="room":
+                                        storey="1":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S13
@@ -271,7 +271,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S14">
                                     <gml:description>
-                                        storey="1":indoor="room":
+                                        storey="1":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S14
@@ -289,7 +289,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S15">
                                     <gml:description>
-                                        storey="1":indoor="room":
+                                        storey="1":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S15
@@ -312,7 +312,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S17">
                                     <gml:description>
-                                        storey="1":indoor="room":
+                                        storey="1":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S17
@@ -330,7 +330,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S18">
                                     <gml:description>
-                                        storey="1":indoor="room":
+                                        storey="1":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S18
@@ -348,7 +348,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S19">
                                     <gml:description>
-                                        storey="1":indoor="room":
+                                        storey="1":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S19
@@ -369,7 +369,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S20">
                                     <gml:description>
-                                        storey="1":indoor="room":
+                                        storey="1":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S20
@@ -387,7 +387,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S21">
                                     <gml:description>
-                                        storey="1":indoor="room":
+                                        storey="1":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S21
@@ -405,7 +405,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S22">
                                     <gml:description>
-                                        storey="1":indoor="room":
+                                        storey="1":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S22
@@ -423,7 +423,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S23">
                                     <gml:description>
-                                        storey="1":indoor="room":
+                                        storey="1":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S23
@@ -441,7 +441,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S24">
                                     <gml:description>
-                                        storey="1":indoor="room":
+                                        storey="1":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S24
@@ -460,7 +460,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S25">
                                     <gml:description>
-                                        storey="1":indoor="room":
+                                        storey="1":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S25
@@ -478,7 +478,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S26">
                                     <gml:description>
-                                        storey="1":indoor="room":
+                                        storey="1":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S26
@@ -496,7 +496,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S27">
                                     <gml:description>
-                                        storey="1":indoor="room":
+                                        storey="1":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S27
@@ -515,7 +515,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S28">
                                     <gml:description>
-                                        storey="1":indoor="room":
+                                        storey="1":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S28
@@ -534,7 +534,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S29">
                                     <gml:description>
-                                        storey="1":indoor="room":
+                                        storey="1":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S29
@@ -552,7 +552,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S31">
                                     <gml:description>
-                                        storey="1":indoor="room":
+                                        storey="1":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S31
@@ -570,7 +570,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S32">
                                     <gml:description>
-                                        storey="1":indoor="room":
+                                        storey="1":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S32
@@ -593,7 +593,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S34">
                                     <gml:description>
-                                        storey="2":indoor="room":
+                                        storey="2":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S34
@@ -613,7 +613,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S35">
                                     <gml:description>
-                                        storey="3":indoor="room":
+                                        storey="3":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S35
@@ -633,7 +633,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S36">
                                     <gml:description>
-                                        storey="2":indoor="room":
+                                        storey="2":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S36
@@ -666,7 +666,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S37">
                                     <gml:description>
-                                        storey="3":indoor="room":
+                                        storey="3":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S37
@@ -702,7 +702,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S38">
                                     <gml:description>
-                                        storey="2":indoor="room":
+                                        storey="2":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S38
@@ -720,7 +720,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S39">
                                     <gml:description>
-                                        storey="2":indoor="room":
+                                        storey="2":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S39
@@ -738,7 +738,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S40">
                                     <gml:description>
-                                        storey="2":indoor="room":
+                                        storey="2":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S40
@@ -757,7 +757,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S41">
                                     <gml:description>
-                                        storey="2":indoor="room":
+                                        storey="2":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S41
@@ -779,7 +779,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S42">
                                     <gml:description>
-                                        storey="2":indoor="room":
+                                        storey="2":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S42
@@ -798,7 +798,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S43">
                                     <gml:description>
-                                        storey="2":indoor="room":
+                                        storey="2":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S43
@@ -817,7 +817,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S44">
                                     <gml:description>
-                                        storey="2":indoor="room":
+                                        storey="2":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S44
@@ -836,7 +836,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S45">
                                     <gml:description>
-                                        storey="2":indoor="room":
+                                        storey="2":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S45
@@ -855,7 +855,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S46">
                                     <gml:description>
-                                        storey="2":indoor="room":
+                                        storey="2":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S46
@@ -874,7 +874,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S47">
                                     <gml:description>
-                                        storey="2":indoor="room":
+                                        storey="2":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S47
@@ -892,7 +892,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S48">
                                     <gml:description>
-                                        storey="2":indoor="room":
+                                        storey="2":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S48
@@ -911,7 +911,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S49">
                                     <gml:description>
-                                        storey="2":indoor="room":
+                                        storey="2":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S49
@@ -935,7 +935,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S50">
                                     <gml:description>
-                                        storey="2":indoor="room":
+                                        storey="2":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S50
@@ -953,7 +953,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S51">
                                     <gml:description>
-                                        storey="2":indoor="room":
+                                        storey="2":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S51
@@ -971,7 +971,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S52">
                                     <gml:description>
-                                        storey="2":indoor="room":
+                                        storey="2":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S52
@@ -990,7 +990,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S53">
                                     <gml:description>
-                                        storey="2":indoor="room":
+                                        storey="2":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S53
@@ -1009,7 +1009,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S54">
                                     <gml:description>
-                                        storey="2":indoor="room":
+                                        storey="2":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S54
@@ -1029,7 +1029,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S55">
                                     <gml:description>
-                                        storey="2":indoor="room":
+                                        storey="2":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S55
@@ -1051,7 +1051,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S56">
                                     <gml:description>
-                                        storey="2":indoor="room":
+                                        storey="2":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S56
@@ -1069,7 +1069,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S57">
                                     <gml:description>
-                                        storey="2":indoor="room":
+                                        storey="2":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S57
@@ -1089,7 +1089,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S58">
                                     <gml:description>
-                                        storey="2":indoor="room":
+                                        storey="2":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S58
@@ -1108,7 +1108,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S59">
                                     <gml:description>
-                                        storey="2":indoor="room":
+                                        storey="2":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S59
@@ -1126,7 +1126,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S60">
                                     <gml:description>
-                                        storey="2":indoor="room":
+                                        storey="2":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S60
@@ -1145,7 +1145,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S61">
                                     <gml:description>
-                                        storey="2":indoor="room":
+                                        storey="2":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S61
@@ -1165,7 +1165,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S62">
                                     <gml:description>
-                                        storey="2":indoor="room":
+                                        storey="2":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S62
@@ -1184,7 +1184,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S63">
                                     <gml:description>
-                                        storey="2":indoor="room":
+                                        storey="2":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S63
@@ -1203,7 +1203,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S64">
                                     <gml:description>
-                                        storey="2":indoor="room":
+                                        storey="2":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S64
@@ -1225,7 +1225,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S65">
                                     <gml:description>
-                                        storey="3":indoor="room":
+                                        storey="3":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S65
@@ -1244,7 +1244,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S66">
                                     <gml:description>
-                                        storey="3":indoor="room":
+                                        storey="3":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S66
@@ -1264,7 +1264,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S67">
                                     <gml:description>
-                                        storey="3":indoor="room":
+                                        storey="3":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S67
@@ -1284,7 +1284,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S68">
                                     <gml:description>
-                                        storey="3":indoor="room":
+                                        storey="3":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S68
@@ -1304,7 +1304,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S69">
                                     <gml:description>
-                                        storey="3":indoor="room":
+                                        storey="3":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S69
@@ -1324,7 +1324,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S70">
                                     <gml:description>
-                                        storey="3":indoor="room":
+                                        storey="3":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S70
@@ -1344,7 +1344,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S71">
                                     <gml:description>
-                                        storey="3":indoor="room":
+                                        storey="3":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S71
@@ -1365,7 +1365,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S72">
                                     <gml:description>
-                                        storey="3":indoor="room":
+                                        storey="3":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S72
@@ -1384,7 +1384,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S73">
                                     <gml:description>
-                                        storey="3":indoor="room":
+                                        storey="3":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S73
@@ -1403,7 +1403,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S74">
                                     <gml:description>
-                                        storey="3":indoor="room":
+                                        storey="3":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S74
@@ -1422,7 +1422,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S75">
                                     <gml:description>
-                                        storey="3":indoor="room":
+                                        storey="3":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S75
@@ -1442,7 +1442,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S76">
                                     <gml:description>
-                                        storey="3":indoor="room":
+                                        storey="3":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S76
@@ -1462,7 +1462,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S77">
                                     <gml:description>
-                                        storey="3":indoor="room":
+                                        storey="3":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S77
@@ -1481,7 +1481,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S78">
                                     <gml:description>
-                                        storey="3":indoor="room":
+                                        storey="3":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S78
@@ -1500,7 +1500,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S79">
                                     <gml:description>
-                                        storey="3":indoor="room":
+                                        storey="3":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S79
@@ -1521,7 +1521,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S80">
                                     <gml:description>
-                                        storey="3":indoor="room":
+                                        storey="3":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S80
@@ -1540,7 +1540,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S81">
                                     <gml:description>
-                                        storey="3":indoor="room":
+                                        storey="3":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S81
@@ -1559,7 +1559,7 @@
                             <IndoorCore:stateMember>
                                 <IndoorCore:State gml:id="S82">
                                     <gml:description>
-                                        storey="1":indoor="room":
+                                        storey="1":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         S82
@@ -1617,7 +1617,7 @@
                             <IndoorCore:transitionMember>
                                 <IndoorCore:Transition gml:id="T1">
                                     <gml:description>
-                                        storey="2-3":indoor="room":
+                                        storey="2-3":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         T1
@@ -6083,7 +6083,7 @@
                             <IndoorCore:transitionMember>
                                 <IndoorCore:Transition gml:id="T1-REVERSE">
                                     <gml:description>
-                                        storey="2-3":indoor="room":
+                                        storey="2-3":usage="room":
                                     </gml:description>
                                     <gml:name>
                                         T1-REVERSE
@@ -8278,7 +8278,7 @@
                 <zdef-1189523942:GeneralSpace xmlns:zdef-1189523942="http://www.opengis.net/indoorgml/1.0/navigation"
                                               gml:id="C6">
                     <gml:description>
-                        storey="1":indoor="room":
+                        storey="1":usage="room":
                     </gml:description>
                     <gml:name>
                         CR101
@@ -8588,7 +8588,7 @@
                 <zdef1777402233:GeneralSpace xmlns:zdef1777402233="http://www.opengis.net/indoorgml/1.0/navigation"
                                              gml:id="C7">
                     <gml:description>
-                        storey="1":indoor="room":
+                        storey="1":usage="room":
                     </gml:description>
                     <gml:name>
                         CR102
@@ -8956,7 +8956,7 @@
                 <zdef-1130782059:GeneralSpace xmlns:zdef-1130782059="http://www.opengis.net/indoorgml/1.0/navigation"
                                               gml:id="C8">
                     <gml:description>
-                        storey="1":indoor="room":
+                        storey="1":usage="room":
                     </gml:description>
                     <gml:name>
                         CR103
@@ -9295,7 +9295,7 @@
                 <zdef-755209915:GeneralSpace xmlns:zdef-755209915="http://www.opengis.net/indoorgml/1.0/navigation"
                                              gml:id="C9">
                     <gml:description>
-                        storey="1":indoor="room":
+                        storey="1":usage="room":
                     </gml:description>
                     <gml:name>
                         CR104
@@ -9576,7 +9576,7 @@
                 <zdef-1650873307:GeneralSpace xmlns:zdef-1650873307="http://www.opengis.net/indoorgml/1.0/navigation"
                                               gml:id="C10">
                     <gml:description>
-                        storey="1":indoor="room":
+                        storey="1":usage="room":
                     </gml:description>
                     <gml:name>
                         CR105
@@ -9945,7 +9945,7 @@
                 <zdef-1741117039:GeneralSpace xmlns:zdef-1741117039="http://www.opengis.net/indoorgml/1.0/navigation"
                                               gml:id="C11">
                     <gml:description>
-                        storey="1":indoor="room":
+                        storey="1":usage="room":
                     </gml:description>
                     <gml:name>
                         CR106
@@ -10285,7 +10285,7 @@
                 <zdef967742589:GeneralSpace xmlns:zdef967742589="http://www.opengis.net/indoorgml/1.0/navigation"
                                             gml:id="C12">
                     <gml:description>
-                        storey="1":indoor="room":
+                        storey="1":usage="room":
                     </gml:description>
                     <gml:name>
                         CR107
@@ -10654,7 +10654,7 @@
                 <zdef18321398:GeneralSpace xmlns:zdef18321398="http://www.opengis.net/indoorgml/1.0/navigation"
                                            gml:id="C13">
                     <gml:description>
-                        storey="1":indoor="room":
+                        storey="1":usage="room":
                     </gml:description>
                     <gml:name>
                         CR108
@@ -10906,7 +10906,7 @@
                 <zdef-1352627291:GeneralSpace xmlns:zdef-1352627291="http://www.opengis.net/indoorgml/1.0/navigation"
                                               gml:id="C14">
                     <gml:description>
-                        storey="1":indoor="room":
+                        storey="1":usage="room":
                     </gml:description>
                     <gml:name>
                         CR109
@@ -11158,7 +11158,7 @@
                 <zdef88599645:GeneralSpace xmlns:zdef88599645="http://www.opengis.net/indoorgml/1.0/navigation"
                                            gml:id="C15">
                     <gml:description>
-                        storey="1":indoor="room":
+                        storey="1":usage="room":
                     </gml:description>
                     <gml:name>
                         CR110
@@ -11791,7 +11791,7 @@
                 <zdef104880864:GeneralSpace xmlns:zdef104880864="http://www.opengis.net/indoorgml/1.0/navigation"
                                             gml:id="C16">
                     <gml:description>
-                        storey="1":indoor="room":
+                        storey="1":usage="room":
                     </gml:description>
                     <gml:name>
                         CR111
@@ -12072,7 +12072,7 @@
                 <zdef-1018490688:GeneralSpace xmlns:zdef-1018490688="http://www.opengis.net/indoorgml/1.0/navigation"
                                               gml:id="C17">
                     <gml:description>
-                        storey="1":indoor="room":
+                        storey="1":usage="room":
                     </gml:description>
                     <gml:name>
                         CR112
@@ -12527,7 +12527,7 @@
                 <zdef-307668626:GeneralSpace xmlns:zdef-307668626="http://www.opengis.net/indoorgml/1.0/navigation"
                                              gml:id="C18">
                     <gml:description>
-                        storey="1":indoor="room":
+                        storey="1":usage="room":
                     </gml:description>
                     <gml:name>
                         CR113
@@ -13101,7 +13101,7 @@
                 <zdef1400880486:GeneralSpace xmlns:zdef1400880486="http://www.opengis.net/indoorgml/1.0/navigation"
                                              gml:id="C19">
                     <gml:description>
-                        storey="1":indoor="room":
+                        storey="1":usage="room":
                     </gml:description>
                     <gml:name>
                         CR114
@@ -13382,7 +13382,7 @@
                 <zdef1038776892:GeneralSpace xmlns:zdef1038776892="http://www.opengis.net/indoorgml/1.0/navigation"
                                              gml:id="C20">
                     <gml:description>
-                        storey="1":indoor="room":
+                        storey="1":usage="room":
                     </gml:description>
                     <gml:name>
                         CR115
@@ -13634,7 +13634,7 @@
                 <zdef-2114742252:GeneralSpace xmlns:zdef-2114742252="http://www.opengis.net/indoorgml/1.0/navigation"
                                               gml:id="C21">
                     <gml:description>
-                        storey="1":indoor="room":
+                        storey="1":usage="room":
                     </gml:description>
                     <gml:name>
                         CR116
@@ -13886,7 +13886,7 @@
                 <zdef965858507:GeneralSpace xmlns:zdef965858507="http://www.opengis.net/indoorgml/1.0/navigation"
                                             gml:id="C22">
                     <gml:description>
-                        storey="1":indoor="room":
+                        storey="1":usage="room":
                     </gml:description>
                     <gml:name>
                         CR117
@@ -14138,7 +14138,7 @@
                 <zdef-596592956:GeneralSpace xmlns:zdef-596592956="http://www.opengis.net/indoorgml/1.0/navigation"
                                              gml:id="C23">
                     <gml:description>
-                        storey="1":indoor="room":
+                        storey="1":usage="room":
                     </gml:description>
                     <gml:name>
                         CR118
@@ -14390,7 +14390,7 @@
                 <zdef1837942995:GeneralSpace xmlns:zdef1837942995="http://www.opengis.net/indoorgml/1.0/navigation"
                                              gml:id="C24">
                     <gml:description>
-                        storey="1":indoor="room":
+                        storey="1":usage="room":
                     </gml:description>
                     <gml:name>
                         CR119
@@ -14642,7 +14642,7 @@
                 <zdef-263005475:GeneralSpace xmlns:zdef-263005475="http://www.opengis.net/indoorgml/1.0/navigation"
                                              gml:id="C25">
                     <gml:description>
-                        storey="1":indoor="room":
+                        storey="1":usage="room":
                     </gml:description>
                     <gml:name>
                         CR120
@@ -15300,7 +15300,7 @@
                 <zdef-278463635:GeneralSpace xmlns:zdef-278463635="http://www.opengis.net/indoorgml/1.0/navigation"
                                              gml:id="C26">
                     <gml:description>
-                        storey="1":indoor="room":
+                        storey="1":usage="room":
                     </gml:description>
                     <gml:name>
                         CR121
@@ -15552,7 +15552,7 @@
                 <zdef797493256:GeneralSpace xmlns:zdef797493256="http://www.opengis.net/indoorgml/1.0/navigation"
                                             gml:id="C27">
                     <gml:description>
-                        storey="1":indoor="room":
+                        storey="1":usage="room":
                     </gml:description>
                     <gml:name>
                         CR122
@@ -15804,7 +15804,7 @@
                 <zdef-2138063422:GeneralSpace xmlns:zdef-2138063422="http://www.opengis.net/indoorgml/1.0/navigation"
                                               gml:id="C28">
                     <gml:description>
-                        storey="1":indoor="room":
+                        storey="1":usage="room":
                     </gml:description>
                     <gml:name>
                         CR123
@@ -16085,7 +16085,7 @@
                 <zdef-1339999734:GeneralSpace xmlns:zdef-1339999734="http://www.opengis.net/indoorgml/1.0/navigation"
                                               gml:id="C29">
                     <gml:description>
-                        storey="1":indoor="room":
+                        storey="1":usage="room":
                     </gml:description>
                     <gml:name>
                         CR124
@@ -16627,7 +16627,7 @@
                 <zdef-1707065185:GeneralSpace xmlns:zdef-1707065185="http://www.opengis.net/indoorgml/1.0/navigation"
                                               gml:id="C30">
                     <gml:description>
-                        storey="1":indoor="room":
+                        storey="1":usage="room":
                     </gml:description>
                     <gml:name>
                         CR125
@@ -22102,7 +22102,7 @@
                 <zdef558620902:GeneralSpace xmlns:zdef558620902="http://www.opengis.net/indoorgml/1.0/navigation"
                                             gml:id="C36">
                     <gml:description>
-                        storey="2":indoor="room":
+                        storey="2":usage="room":
                     </gml:description>
                     <gml:name>
                         CR201
@@ -22354,7 +22354,7 @@
                 <zdef-1418946930:GeneralSpace xmlns:zdef-1418946930="http://www.opengis.net/indoorgml/1.0/navigation"
                                               gml:id="C37">
                     <gml:description>
-                        storey="2":indoor="room":
+                        storey="2":usage="room":
                     </gml:description>
                     <gml:name>
                         CR202
@@ -22606,7 +22606,7 @@
                 <zdef1457026070:GeneralSpace xmlns:zdef1457026070="http://www.opengis.net/indoorgml/1.0/navigation"
                                              gml:id="C38">
                     <gml:description>
-                        storey="2":indoor="room":
+                        storey="2":usage="room":
                     </gml:description>
                     <gml:name>
                         CR203
@@ -22887,7 +22887,7 @@
                 <zdef-1463322136:GeneralSpace xmlns:zdef-1463322136="http://www.opengis.net/indoorgml/1.0/navigation"
                                               gml:id="C39">
                     <gml:description>
-                        storey="2":indoor="room":
+                        storey="2":usage="room":
                     </gml:description>
                     <gml:name>
                         CR204
@@ -23519,7 +23519,7 @@
                 <zdef996065397:GeneralSpace xmlns:zdef996065397="http://www.opengis.net/indoorgml/1.0/navigation"
                                             gml:id="C40">
                     <gml:description>
-                        storey="2":indoor="room":
+                        storey="2":usage="room":
                     </gml:description>
                     <gml:name>
                         CR205
@@ -24032,7 +24032,7 @@
                 <zdef-1753405931:GeneralSpace xmlns:zdef-1753405931="http://www.opengis.net/indoorgml/1.0/navigation"
                                               gml:id="C41">
                     <gml:description>
-                        storey="2":indoor="room":
+                        storey="2":usage="room":
                     </gml:description>
                     <gml:name>
                         CR206
@@ -24401,7 +24401,7 @@
                 <zdef-963944460:GeneralSpace xmlns:zdef-963944460="http://www.opengis.net/indoorgml/1.0/navigation"
                                              gml:id="C42">
                     <gml:description>
-                        storey="2":indoor="room":
+                        storey="2":usage="room":
                     </gml:description>
                     <gml:name>
                         CR207
@@ -24653,7 +24653,7 @@
                 <zdef1788706547:GeneralSpace xmlns:zdef1788706547="http://www.opengis.net/indoorgml/1.0/navigation"
                                              gml:id="C43">
                     <gml:description>
-                        storey="2":indoor="room":
+                        storey="2":usage="room":
                     </gml:description>
                     <gml:name>
                         CR208
@@ -24905,7 +24905,7 @@
                 <zdef-630763178:GeneralSpace xmlns:zdef-630763178="http://www.opengis.net/indoorgml/1.0/navigation"
                                              gml:id="C44">
                     <gml:description>
-                        storey="2":indoor="room":
+                        storey="2":usage="room":
                     </gml:description>
                     <gml:name>
                         CR209
@@ -25215,7 +25215,7 @@
                 <zdef-1038790095:GeneralSpace xmlns:zdef-1038790095="http://www.opengis.net/indoorgml/1.0/navigation"
                                               gml:id="C45">
                     <gml:description>
-                        storey="2":indoor="room":
+                        storey="2":usage="room":
                     </gml:description>
                     <gml:name>
                         CR210
@@ -25467,7 +25467,7 @@
                 <zdef619619064:GeneralSpace xmlns:zdef619619064="http://www.opengis.net/indoorgml/1.0/navigation"
                                             gml:id="C46">
                     <gml:description>
-                        storey="2":indoor="room":
+                        storey="2":usage="room":
                     </gml:description>
                     <gml:name>
                         CR211
@@ -25719,7 +25719,7 @@
                 <zdef589234593:GeneralSpace xmlns:zdef589234593="http://www.opengis.net/indoorgml/1.0/navigation"
                                             gml:id="C47">
                     <gml:description>
-                        storey="2":indoor="room":
+                        storey="2":usage="room":
                     </gml:description>
                     <gml:name>
                         CR212
@@ -26614,7 +26614,7 @@
                 <zdef1015300231:GeneralSpace xmlns:zdef1015300231="http://www.opengis.net/indoorgml/1.0/navigation"
                                              gml:id="C48">
                     <gml:description>
-                        storey="2":indoor="room":
+                        storey="2":usage="room":
                     </gml:description>
                     <gml:name>
                         CR213
@@ -26895,7 +26895,7 @@
                 <zdef577475623:GeneralSpace xmlns:zdef577475623="http://www.opengis.net/indoorgml/1.0/navigation"
                                             gml:id="C49">
                     <gml:description>
-                        storey="2":indoor="room":
+                        storey="2":usage="room":
                     </gml:description>
                     <gml:name>
                         CR214
@@ -27176,7 +27176,7 @@
                 <zdef316047246:GeneralSpace xmlns:zdef316047246="http://www.opengis.net/indoorgml/1.0/navigation"
                                             gml:id="C50">
                     <gml:description>
-                        storey="2":indoor="room":
+                        storey="2":usage="room":
                     </gml:description>
                     <gml:name>
                         CR215
@@ -27777,7 +27777,7 @@
                 <zdef-976224495:GeneralSpace xmlns:zdef-976224495="http://www.opengis.net/indoorgml/1.0/navigation"
                                              gml:id="C51">
                     <gml:description>
-                        storey="2":indoor="room":
+                        storey="2":usage="room":
                     </gml:description>
                     <gml:name>
                         CR216
@@ -28116,7 +28116,7 @@
                 <zdef1758883087:GeneralSpace xmlns:zdef1758883087="http://www.opengis.net/indoorgml/1.0/navigation"
                                              gml:id="C52">
                     <gml:description>
-                        storey="2":indoor="room":
+                        storey="2":usage="room":
                     </gml:description>
                     <gml:name>
                         CR217
@@ -28573,7 +28573,7 @@
                 <zdef-12483888:GeneralSpace xmlns:zdef-12483888="http://www.opengis.net/indoorgml/1.0/navigation"
                                             gml:id="C53">
                     <gml:description>
-                        storey="2":indoor="room":
+                        storey="2":usage="room":
                     </gml:description>
                     <gml:name>
                         CR218
@@ -29118,7 +29118,7 @@
                 <zdef-2092282249:GeneralSpace xmlns:zdef-2092282249="http://www.opengis.net/indoorgml/1.0/navigation"
                                               gml:id="C54">
                     <gml:description>
-                        storey="2":indoor="room":
+                        storey="2":usage="room":
                     </gml:description>
                     <gml:name>
                         CR219
@@ -29429,7 +29429,7 @@
                 <zdef-1931263625:GeneralSpace xmlns:zdef-1931263625="http://www.opengis.net/indoorgml/1.0/navigation"
                                               gml:id="C55">
                     <gml:description>
-                        storey="2":indoor="room":
+                        storey="2":usage="room":
                     </gml:description>
                     <gml:name>
                         CR220
@@ -29798,7 +29798,7 @@
                 <zdef-1972743508:GeneralSpace xmlns:zdef-1972743508="http://www.opengis.net/indoorgml/1.0/navigation"
                                               gml:id="C56">
                     <gml:description>
-                        storey="2":indoor="room":
+                        storey="2":usage="room":
                     </gml:description>
                     <gml:name>
                         CR221
@@ -30050,7 +30050,7 @@
                 <zdef-515534232:GeneralSpace xmlns:zdef-515534232="http://www.opengis.net/indoorgml/1.0/navigation"
                                              gml:id="C57">
                     <gml:description>
-                        storey="2":indoor="room":
+                        storey="2":usage="room":
                     </gml:description>
                     <gml:name>
                         CR222
@@ -30592,7 +30592,7 @@
                 <zdef1894491153:GeneralSpace xmlns:zdef1894491153="http://www.opengis.net/indoorgml/1.0/navigation"
                                              gml:id="C58">
                     <gml:description>
-                        storey="2":indoor="room":
+                        storey="2":usage="room":
                     </gml:description>
                     <gml:name>
                         CR223
@@ -30844,7 +30844,7 @@
                 <zdef877680143:GeneralSpace xmlns:zdef877680143="http://www.opengis.net/indoorgml/1.0/navigation"
                                             gml:id="C59">
                     <gml:description>
-                        storey="2":indoor="room":
+                        storey="2":usage="room":
                     </gml:description>
                     <gml:name>
                         CR224
@@ -31213,7 +31213,7 @@
                 <zdef679148205:GeneralSpace xmlns:zdef679148205="http://www.opengis.net/indoorgml/1.0/navigation"
                                             gml:id="C60">
                     <gml:description>
-                        storey="2":indoor="room":
+                        storey="2":usage="room":
                     </gml:description>
                     <gml:name>
                         CR225
@@ -31377,7 +31377,7 @@
                 <zdef1982889381:GeneralSpace xmlns:zdef1982889381="http://www.opengis.net/indoorgml/1.0/navigation"
                                              gml:id="C61">
                     <gml:description>
-                        storey="2":indoor="room":
+                        storey="2":usage="room":
                     </gml:description>
                     <gml:name>
                         CR226
@@ -31570,7 +31570,7 @@
                 <zdef877921754:GeneralSpace xmlns:zdef877921754="http://www.opengis.net/indoorgml/1.0/navigation"
                                             gml:id="C62">
                     <gml:description>
-                        storey="2":indoor="room":
+                        storey="2":usage="room":
                     </gml:description>
                     <gml:name>
                         CR227
@@ -32318,7 +32318,7 @@
                 <zdef-1099010482:GeneralSpace xmlns:zdef-1099010482="http://www.opengis.net/indoorgml/1.0/navigation"
                                               gml:id="C63">
                     <gml:description>
-                        storey="3":indoor="room":
+                        storey="3":usage="room":
                     </gml:description>
                     <gml:name>
                         CR301
@@ -32802,7 +32802,7 @@
                 <zdef494442273:GeneralSpace xmlns:zdef494442273="http://www.opengis.net/indoorgml/1.0/navigation"
                                             gml:id="C64">
                     <gml:description>
-                        storey="3":indoor="room":
+                        storey="3":usage="room":
                     </gml:description>
                     <gml:name>
                         CR302
@@ -33171,7 +33171,7 @@
                 <zdef-349721589:GeneralSpace xmlns:zdef-349721589="http://www.opengis.net/indoorgml/1.0/navigation"
                                              gml:id="C65">
                     <gml:description>
-                        storey="3":indoor="room":
+                        storey="3":usage="room":
                     </gml:description>
                     <gml:name>
                         CR303
@@ -33511,7 +33511,7 @@
                 <zdef-1789266890:GeneralSpace xmlns:zdef-1789266890="http://www.opengis.net/indoorgml/1.0/navigation"
                                               gml:id="C66">
                     <gml:description>
-                        storey="3":indoor="room":
+                        storey="3":usage="room":
                     </gml:description>
                     <gml:name>
                         CR304
@@ -34141,7 +34141,7 @@
                 <zdef-836788134:GeneralSpace xmlns:zdef-836788134="http://www.opengis.net/indoorgml/1.0/navigation"
                                              gml:id="C67">
                     <gml:description>
-                        storey="3":indoor="room":
+                        storey="3":usage="room":
                     </gml:description>
                     <gml:name>
                         CR305
@@ -34481,7 +34481,7 @@
                 <zdef-667210703:GeneralSpace xmlns:zdef-667210703="http://www.opengis.net/indoorgml/1.0/navigation"
                                              gml:id="C68">
                     <gml:description>
-                        storey="3":indoor="room":
+                        storey="3":usage="room":
                     </gml:description>
                     <gml:name>
                         CR306
@@ -34850,7 +34850,7 @@
                 <zdef330246526:GeneralSpace xmlns:zdef330246526="http://www.opengis.net/indoorgml/1.0/navigation"
                                             gml:id="C69">
                     <gml:description>
-                        storey="3":indoor="room":
+                        storey="3":usage="room":
                     </gml:description>
                     <gml:name>
                         CR307
@@ -35510,7 +35510,7 @@
                 <zdef1492536432:GeneralSpace xmlns:zdef1492536432="http://www.opengis.net/indoorgml/1.0/navigation"
                                              gml:id="C70">
                     <gml:description>
-                        storey="3":indoor="room":
+                        storey="3":usage="room":
                     </gml:description>
                     <gml:name>
                         CR308
@@ -35791,7 +35791,7 @@
                 <zdef-90490180:GeneralSpace xmlns:zdef-90490180="http://www.opengis.net/indoorgml/1.0/navigation"
                                             gml:id="C71">
                     <gml:description>
-                        storey="3":indoor="room":
+                        storey="3":usage="room":
                     </gml:description>
                     <gml:name>
                         CR309
@@ -36131,7 +36131,7 @@
                 <zdef376171466:GeneralSpace xmlns:zdef376171466="http://www.opengis.net/indoorgml/1.0/navigation"
                                             gml:id="C72">
                     <gml:description>
-                        storey="3":indoor="room":
+                        storey="3":usage="room":
                     </gml:description>
                     <gml:name>
                         CR310
@@ -36412,7 +36412,7 @@
                 <zdef604701464:GeneralSpace xmlns:zdef604701464="http://www.opengis.net/indoorgml/1.0/navigation"
                                             gml:id="C73">
                     <gml:description>
-                        storey="3":indoor="room":
+                        storey="3":usage="room":
                     </gml:description>
                     <gml:name>
                         CR311
@@ -36752,7 +36752,7 @@
                 <zdef-2121316610:GeneralSpace xmlns:zdef-2121316610="http://www.opengis.net/indoorgml/1.0/navigation"
                                               gml:id="C74">
                     <gml:description>
-                        storey="3":indoor="room":
+                        storey="3":usage="room":
                     </gml:description>
                     <gml:name>
                         CR312
@@ -37121,7 +37121,7 @@
                 <zdef-283304108:GeneralSpace xmlns:zdef-283304108="http://www.opengis.net/indoorgml/1.0/navigation"
                                              gml:id="C75">
                     <gml:description>
-                        storey="3":indoor="room":
+                        storey="3":usage="room":
                     </gml:description>
                     <gml:name>
                         CR313
@@ -37634,7 +37634,7 @@
                 <zdef1521887102:GeneralSpace xmlns:zdef1521887102="http://www.opengis.net/indoorgml/1.0/navigation"
                                              gml:id="C76">
                     <gml:description>
-                        storey="3":indoor="room":
+                        storey="3":usage="room":
                     </gml:description>
                     <gml:name>
                         CR314
@@ -37886,7 +37886,7 @@
                 <zdef-1281811139:GeneralSpace xmlns:zdef-1281811139="http://www.opengis.net/indoorgml/1.0/navigation"
                                               gml:id="C77">
                     <gml:description>
-                        storey="3":indoor="room":
+                        storey="3":usage="room":
                     </gml:description>
                     <gml:name>
                         CR315
@@ -38314,7 +38314,7 @@
                 <zdef-1208052216:GeneralSpace xmlns:zdef-1208052216="http://www.opengis.net/indoorgml/1.0/navigation"
                                               gml:id="C78">
                     <gml:description>
-                        storey="3":indoor="room":
+                        storey="3":usage="room":
                     </gml:description>
                     <gml:name>
                         CR316
@@ -38595,7 +38595,7 @@
                 <zdef994793869:GeneralSpace xmlns:zdef994793869="http://www.opengis.net/indoorgml/1.0/navigation"
                                             gml:id="C79">
                     <gml:description>
-                        storey="3":indoor="room":
+                        storey="3":usage="room":
                     </gml:description>
                     <gml:name>
                         CR317
@@ -38876,7 +38876,7 @@
                 <zdef2130377900:GeneralSpace xmlns:zdef2130377900="http://www.opengis.net/indoorgml/1.0/navigation"
                                              gml:id="C80">
                     <gml:description>
-                        storey="1":indoor="room":
+                        storey="1":usage="room":
                     </gml:description>
                     <gml:name>
                         CR126

@@ -134,7 +134,7 @@ public class SimpleIndoorGMLHandlerNG extends DefaultHandler {
                 || qName.contains("GeneralSpace")
                 || qName.contains("ConnectionSpace")
                 || qName.contains("AnchorSpace")
-                ) && !qName.contains("CellSpaceBoundary")) {
+                ) && !qName.contains("Boundary")) {
             CellSpace c = new CellSpace(id, polygon, userData);
             State state = builder.getState(duality);
             if (state != null) {
@@ -189,9 +189,9 @@ public class SimpleIndoorGMLHandlerNG extends DefaultHandler {
     @Override
     public void characters(char[] ch, int start, int length) throws SAXException {
         if (isPos) {
-            String ps = new String(ch, start, length).trim();
-            ps = ps.replaceAll("[\n\r]", "");
-            String[] cs = ps.split(" ");
+            String pos = new String(ch, start, length).trim();
+            pos = pos.replaceAll("[\n\r]", "");
+            String[] cs = pos.split(" ");
             Coordinate coord = new Coordinate(
                     Double.parseDouble(cs[0]),
                     Double.parseDouble(cs[1]),
@@ -201,8 +201,9 @@ public class SimpleIndoorGMLHandlerNG extends DefaultHandler {
         }
         else if (isDescription) {
             String description = new String(ch, start, length).trim();
+            description = description.replaceAll("[\n\r]", "");
+            description = description.replaceAll(" ", "");
             String[] ds = description.split(":");
-
             userData = new HashMap<Object, Object>();
             for (String s : ds) {
                 String[] key_value = s.split("=");
@@ -212,7 +213,7 @@ public class SimpleIndoorGMLHandlerNG extends DefaultHandler {
                 }
 
                 String key = key_value[0].toUpperCase();
-                String value = key_value[1].toUpperCase();
+                String value = key_value[1].toUpperCase().replaceAll("[\"]", "");
                 userData.put(key, value);
             }
             isDescription = false;
