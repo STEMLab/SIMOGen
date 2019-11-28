@@ -6,7 +6,7 @@ package edu.pnu.stemlab.model.indoor;
 import java.util.Map;
 import java.util.Set;
 
-import edu.pnu.stemlab.model.geometry.Point;
+import com.vividsolutions.jts.geom.Point;
 
 /**
  * @author hgryoo

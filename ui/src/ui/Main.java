@@ -11,50 +11,34 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Menu;
-import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Tree;
-import org.eclipse.swt.widgets.TreeItem;
+import org.eclipse.swt.widgets.Group;
+import org.eclipse.swt.layout.FillLayout;
 
 import edu.pnu.io.SimpleIndoorGMLImporter;
 import edu.pnu.model.SpaceLayer;
 import edu.pnu.model.dual.State;
-import org.eclipse.swt.widgets.Group;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.layout.FillLayout;
-import org.eclipse.swt.layout.RowLayout;
-import org.eclipse.swt.layout.RowData;
 
 public class Main {
-    
     private Shell shell;
-
     private GridLayout layout = new GridLayout(2, true);
-    
     private Text txtfilePath;
     private Button btnBrowse;
-    
     private Button btnSubmit;
     private Button btnCancel;
     private Label lblNewLabel;
-
-    
     private File igmlFile;
     private Tree tree;
-    
-    
     private SpaceLayer layer;
     private Table entranceTable;
-    
     
     /* Statistics Groups */
     private Group statisticsGroup;
@@ -113,14 +97,12 @@ public class Main {
                 dialog.setFilterPath (filterPath);
                 
                 String path = dialog.open();
-                txtfilePath.setText(path);
+                if(path != null)
+                    txtfilePath.setText(path);
             }
         });
         btnBrowse.setText("Browse IndoorGML");
-        
-        
-        
-        
+
         btnSubmit = new Button(shell, SWT.NONE);
         GridData gd_btnNewButton_1 = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
         gd_btnNewButton_1.widthHint = 205;
@@ -136,19 +118,16 @@ public class Main {
                         layer = importer.getSpaceLayer();
                         
                         statisticsGroup.setEnabled(true);
-                        
                         String[] titles = { "ID", "Duality", "Type", "Floor" };
                         for (int i = 0; i < titles.length; i++) {
                             TableColumn column = new TableColumn(entranceTable, SWT.NONE);
                             column.setText(titles[i]);
                             entranceTable.getColumn(i).pack();
                         }
-                        
                         for (int i=0; i<titles.length; i++) {
                             entranceTable.getColumn (i).pack ();
                         }
-                        
-                        
+
                         Set<State> entrances = layer.getEntrances();
                         Iterator it = entrances.iterator();
                         while(it.hasNext()) {

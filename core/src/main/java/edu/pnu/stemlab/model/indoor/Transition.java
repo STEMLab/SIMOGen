@@ -6,7 +6,7 @@ package edu.pnu.stemlab.model.indoor;
 import java.util.Map;
 import java.util.Set;
 
-import edu.pnu.stemlab.model.geometry.Curve;
+import com.vividsolutions.jts.geom.LineString;
 
 /**
  * @author hgryoo
@@ -14,8 +14,8 @@ import edu.pnu.stemlab.model.geometry.Curve;
  */
 public interface Transition {
 	String getId();
-	
-	Curve getGeometry();
+
+	LineString getGeometry();
 	
 	Double getWeight();
 	
