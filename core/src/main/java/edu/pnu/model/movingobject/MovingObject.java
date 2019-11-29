@@ -73,9 +73,10 @@ public class MovingObject {
     }
 
     public MovingObject(Generator gen, Coordinate coord) {
-        this.life = new Random().nextInt(1000) + 3000;
+        this.life = new Random().nextInt(200) + 1500;
         this.velocity = 1.0f;
         this.gen = gen;
+        // TODO: implement coordinate based MO
     }
 
     public MovingObject(Generator gen, State state) {
@@ -83,8 +84,9 @@ public class MovingObject {
         this.start = state;
         this.currentCell = state.getDuality();
         this.coord = GeometryUtil.getRandomPoint(state.getDuality());
-        this.history = new LinkedList<History>();
+        this.history = new LinkedList<>();
         this.history.add(new History(gen.getClock().getTime(), this.coord));
+        this.movement = getDefaultMovement();
     }
 
     public CellSpace getCurrentCellSpace() {
@@ -111,7 +113,7 @@ public class MovingObject {
         Coordinate next = null;
 
         double nextTime = sampling;
-        if (life != 0) {
+        if (life > 0) {
             //calculate remaining time
             if ((life - sampling) < 0) {
                 nextTime = life;
@@ -128,13 +130,13 @@ public class MovingObject {
             }
 
             life -= nextTime;
-            if (life == 0) {
+            if (life <= 0) {
                 movement = getTerminateMovement();
             }
         }
 
         //life time ends
-        if (life == 0) {
+        if (life <= 0) {
             next = movement.getNext(this, sampling);
 
             if (getCurrentCellSpace().getDuality() == start) {
