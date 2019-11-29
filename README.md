@@ -16,7 +16,7 @@ The follwing tools are required to build OpenGDS/Conversion:
 ```
 
 ## Usage
-![screenshots](image/main.png)
+![screenshots](image/main.PNG)
 1) Push "Browse IndoorGML" button
     ```
     For using this program, input IndoorGML data should have 'USAGE' information in the description of 'State'
