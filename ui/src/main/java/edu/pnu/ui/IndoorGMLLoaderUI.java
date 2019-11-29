@@ -22,16 +22,12 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * 
  */
-package ui;
+package edu.pnu.ui;
 
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.layout.RowLayout;
-import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.SWTError;
+import org.eclipse.swt.browser.Browser;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Shell;
@@ -40,51 +36,20 @@ import org.eclipse.swt.widgets.Shell;
  * @author hgryoo
  *
  */
-public class MainApplication {
-    
-    private static Shell mainShell;
-    
-    private static FileDialog dialog;
-    
+public class IndoorGMLLoaderUI {
     public static void main (String [] args) {
         Display display = new Display();
-        mainShell = new Shell(display);
+        Shell shell = new Shell(display);
         
-        mainShell.setLayout(new RowLayout());
-
-        // initialize a parent composite with a grid layout manager
-        Composite parent = new Composite(mainShell, SWT.NONE);
-        GridLayout gridLayout = new GridLayout();
-        gridLayout.numColumns = 1;
-        parent.setLayout(gridLayout);
+        //initDialog(dialog);
         
-        Button open = new Button (mainShell, SWT.PUSH);
-        open.setText ("Browse File");
         
-        dialog = new FileDialog (mainShell, SWT.OPEN);
-        initDialog(dialog);
-        processLoadFile(open);
         
-        mainShell.pack();
-        mainShell.open();
-        while (!mainShell.isDisposed()) {
-            if (!display.readAndDispatch())
-                display.sleep();
-        }
-        // tear down the SWT window
+        
         display.dispose();
     }
     
-    private static void processLoadFile(Button b) {
-        b.addSelectionListener (new SelectionAdapter() {
-            @Override
-            public void widgetSelected(SelectionEvent e) {
-                System.out.println ("Load from: " + dialog.open ());
-            }
-        });
-    }
-    
-    private static void initDialog(FileDialog dialog) {
+    public void initDialog(FileDialog dialog) {
         String [] filterNames = new String [] {"IndoorGML File", "All Files (*)"};
         String [] filterExtensions = new String [] {"*.xml;*.gml;*.igml;", "*"};
         String filterPath = "/";

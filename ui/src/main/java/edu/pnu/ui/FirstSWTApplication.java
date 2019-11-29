@@ -22,39 +22,45 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * 
  */
-package ui;
+package edu.pnu.ui;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.layout.RowLayout;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Shell;
 
 /**
  * @author hgryoo
  *
  */
-public class FileSnippet {
-    public static void main (String [] args) {
-        Display display = new Display ();
-        Shell shell = new Shell (display);
-        shell.open ();
-        FileDialog dialog = new FileDialog (shell, SWT.OPEN);
-        String [] filterNames = new String [] {"IndoorGML File", "All Files (*)"};
-        String [] filterExtensions = new String [] {"*.xml;*.gml;*.igml;", "*"};
-        String filterPath = "/";
-        String platform = SWT.getPlatform();
-        if (platform.equals("win32")) {
-                filterNames = new String [] {"IndoorGML File", "All Files (*.*)"};
-                filterExtensions = new String [] {".xml;*.gml;*.igml;", "*.*"};
-                filterPath = "c:\\";
+public class FirstSWTApplication {
+
+    public static void main(String[] args) {
+        // setup the SWT window
+        Display display = new Display();
+        final Shell shell = new Shell(display);
+        shell.setLayout(new RowLayout());
+
+        // initialize a parent composite with a grid layout manager
+        Composite parent = new Composite(shell, SWT.NONE);
+        GridLayout gridLayout = new GridLayout();
+        gridLayout.numColumns = 1;
+        parent.setLayout(gridLayout);
+        
+        DateTime calendar = new DateTime(parent, SWT.CALENDAR);
+        DateTime time = new DateTime(parent, SWT.TIME);
+
+        shell.pack();
+        shell.open();
+        while (!shell.isDisposed()) {
+            if (!display.readAndDispatch())
+                display.sleep();
         }
-        dialog.setFilterNames (filterNames);
-        dialog.setFilterExtensions (filterExtensions);
-        dialog.setFilterPath (filterPath);
-        System.out.println ("Load from: " + dialog.open ());
-        while (!shell.isDisposed ()) {
-                if (!display.readAndDispatch ()) display.sleep ();
-        }
-        display.dispose ();
+        // tear down the SWT window
+        display.dispose();
     }
+    
 }

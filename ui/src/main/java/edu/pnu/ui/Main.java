@@ -1,4 +1,4 @@
-package ui;
+package edu.pnu.ui;
 
 import java.io.File;
 import java.util.Iterator;

@@ -22,7 +22,7 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * 
  */
-package ui;
+package edu.pnu.ui;
 
 import static org.eclipse.swt.events.SelectionListener.*;
 

@@ -22,7 +22,7 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * 
  */
-package ui;
+package edu.pnu.ui;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.DirectoryDialog;

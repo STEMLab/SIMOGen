@@ -22,45 +22,21 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * 
  */
-package ui;
+package edu.pnu.ui;
 
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.DateTime;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Shell;
 
 /**
  * @author hgryoo
  *
  */
-public class FirstSWTApplication {
+public class IndoorStatisticsComposite extends Composite {
 
-    public static void main(String[] args) {
-        // setup the SWT window
-        Display display = new Display();
-        final Shell shell = new Shell(display);
-        shell.setLayout(new RowLayout());
-
-        // initialize a parent composite with a grid layout manager
-        Composite parent = new Composite(shell, SWT.NONE);
-        GridLayout gridLayout = new GridLayout();
-        gridLayout.numColumns = 1;
-        parent.setLayout(gridLayout);
+    public IndoorStatisticsComposite(Composite parent, int style) {
+        super(parent, style);
+        // TODO Auto-generated constructor stub
         
-        DateTime calendar = new DateTime(parent, SWT.CALENDAR);
-        DateTime time = new DateTime(parent, SWT.TIME);
-
-        shell.pack();
-        shell.open();
-        while (!shell.isDisposed()) {
-            if (!display.readAndDispatch())
-                display.sleep();
-        }
-        // tear down the SWT window
-        display.dispose();
+        
     }
-    
+
 }

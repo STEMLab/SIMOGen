@@ -22,38 +22,39 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * 
  */
-package ui;
+package edu.pnu.ui;
 
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.SWTError;
-import org.eclipse.swt.browser.Browser;
-import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Shell;
 
 /**
  * @author hgryoo
  *
  */
-public class WebKitSnippet {
-        public static void main(String [] args) {
-            Display display = new Display();
-            Shell shell = new Shell(display);
-            shell.setLayout(new FillLayout());
-            shell.setText("WebKit");
-            final Browser browser;
-            try {
-                    browser = new Browser(shell, SWT.MOZILLA);
-            } catch (SWTError e) {
-                    System.out.println("Could not instantiate Browser: " + e.getMessage());
-                    display.dispose();
-                    return;
-            }
-            shell.open();
-            browser.setUrl("http://webkit.org");
-            while (!shell.isDisposed()) {
-                    if (!display.readAndDispatch()) display.sleep();
-            }
-            display.dispose();
+public class FileSnippet {
+    public static void main (String [] args) {
+        Display display = new Display ();
+        Shell shell = new Shell (display);
+        shell.open ();
+        FileDialog dialog = new FileDialog (shell, SWT.OPEN);
+        String [] filterNames = new String [] {"IndoorGML File", "All Files (*)"};
+        String [] filterExtensions = new String [] {"*.xml;*.gml;*.igml;", "*"};
+        String filterPath = "/";
+        String platform = SWT.getPlatform();
+        if (platform.equals("win32")) {
+                filterNames = new String [] {"IndoorGML File", "All Files (*.*)"};
+                filterExtensions = new String [] {".xml;*.gml;*.igml;", "*.*"};
+                filterPath = "c:\\";
+        }
+        dialog.setFilterNames (filterNames);
+        dialog.setFilterExtensions (filterExtensions);
+        dialog.setFilterPath (filterPath);
+        System.out.println ("Load from: " + dialog.open ());
+        while (!shell.isDisposed ()) {
+                if (!display.readAndDispatch ()) display.sleep ();
+        }
+        display.dispose ();
     }
 }
