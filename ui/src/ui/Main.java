@@ -1,26 +1,21 @@
 package ui;
 
-import java.awt.FlowLayout;
 import java.io.File;
 import java.util.Iterator;
+import java.util.Random;
 import java.util.Set;
 
+import edu.pnu.core.Clock;
+import edu.pnu.core.Generator;
+import edu.pnu.io.SimpleMovingFeaturesCSVExporter;
+import edu.pnu.model.movingobject.ClientObject;
+import edu.pnu.model.movingobject.MovingObject;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.FileDialog;
-import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Table;
-import org.eclipse.swt.widgets.TableColumn;
-import org.eclipse.swt.widgets.TableItem;
-import org.eclipse.swt.widgets.Text;
-import org.eclipse.swt.widgets.Tree;
-import org.eclipse.swt.widgets.Group;
+import org.eclipse.swt.widgets.*;
 import org.eclipse.swt.layout.FillLayout;
 
 import edu.pnu.io.SimpleIndoorGMLImporter;
@@ -30,23 +25,27 @@ import edu.pnu.model.dual.State;
 public class Main {
     private Shell shell;
     private GridLayout layout = new GridLayout(2, true);
-    private Text txtfilePath;
+    private Text txtInputFilePath;
+    private Text txtTimeDuration;
+    private Text txtMaxMOCount;
+    private Text txtGenerateProb;
+    private Text txtOutputFilePath;
     private Button btnBrowse;
     private Button btnSubmit;
     private Button btnCancel;
-    private Label lblNewLabel;
-    private File igmlFile;
-    private Tree tree;
-    private SpaceLayer layer;
     private Table entranceTable;
+    private File igmlFile;
+    private SpaceLayer layer;
+
     
     /* Statistics Groups */
     private Group statisticsGroup;
-    private Group subStatisticsGroup;
-    private Group grpSection;
-    private Group grpType;
-    private Group grpFloor;
+    private Group moOptionGroup;
+    private Group grpTime;
+    private Group grpMOCount;
+    private Group grpGenProb;
     private Group grpEntrances;
+    private Group grpOutput;
     private Button btnNewButton;
     
     /**
@@ -69,13 +68,13 @@ public class Main {
         Display display = Display.getDefault();
         shell = new Shell();
         shell.setSize(450, 472);
-        shell.setText("SWT Application");
+        shell.setText("IndoorGML based Moving Object Generator");
         shell.setLayout(layout);
-        
-        txtfilePath = new Text(shell, SWT.BORDER);
+
+        txtInputFilePath = new Text(shell, SWT.BORDER);
         GridData gd_text = new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1);
         gd_text.widthHint = 192;
-        txtfilePath.setLayoutData(gd_text);
+        txtInputFilePath.setLayoutData(gd_text);
         
         btnBrowse = new Button(shell, SWT.NONE);
         btnBrowse.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1));
@@ -98,7 +97,7 @@ public class Main {
                 
                 String path = dialog.open();
                 if(path != null)
-                    txtfilePath.setText(path);
+                    txtInputFilePath.setText(path);
             }
         });
         btnBrowse.setText("Browse IndoorGML");
@@ -110,7 +109,7 @@ public class Main {
         btnSubmit.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-                igmlFile = new File(txtfilePath.getText());
+                igmlFile = new File(txtInputFilePath.getText());
                 if(igmlFile.canRead()) {
                     SimpleIndoorGMLImporter importer;
                     try {
@@ -154,8 +153,8 @@ public class Main {
         btnCancel.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-                txtfilePath.setText("");
-                txtfilePath.setEnabled(true);
+                txtInputFilePath.setText("");
+                txtInputFilePath.setEnabled(true);
                 btnBrowse.setEnabled(true);
             }
         });
@@ -177,68 +176,95 @@ public class Main {
         entranceTable = new Table(grpEntrances, SWT.BORDER | SWT.FULL_SELECTION);
         entranceTable.setHeaderVisible(true);
         entranceTable.setLinesVisible(true);
+
+        /* Option */
+
+        moOptionGroup = new Group(shell, SWT.NONE);
+        moOptionGroup.setLayout(new FillLayout(SWT.VERTICAL));
+        moOptionGroup.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 2, 1));
+        moOptionGroup.setText("Moving Object Generation Options");
+
+        grpTime = new Group(moOptionGroup, SWT.NONE);
+        grpTime.setText("Time duration");
+        grpTime.setLayout(new FillLayout(SWT.FILL));
+        txtTimeDuration = new Text(grpTime, SWT.BORDER);
+        txtTimeDuration.setText("300");
+
+        grpMOCount = new Group(moOptionGroup, SWT.NONE);
+        grpMOCount.setText("Max moving object count");
+        grpMOCount.setLayout(new FillLayout(SWT.FILL));
+        txtMaxMOCount = new Text(grpMOCount, SWT.BORDER);
+        txtMaxMOCount.setText("30");
         
-        subStatisticsGroup = new Group(statisticsGroup, SWT.NONE);
-        subStatisticsGroup.setLayout(new FillLayout(SWT.HORIZONTAL));
-        subStatisticsGroup.setText("Cell Statistics");
-        
-        grpSection = new Group(subStatisticsGroup, SWT.NONE);
-        grpSection.setText("Section");
-        grpSection.setLayout(new FillLayout(SWT.VERTICAL));
-        
-        Button btnSectionAvenuel = new Button(grpSection, SWT.CHECK);
-        btnSectionAvenuel.addSelectionListener(new SelectionAdapter() {
-            @Override
-            public void widgetSelected(SelectionEvent e) {
-            }
-        });
-        btnSectionAvenuel.setText("All");
-        
-        grpType = new Group(subStatisticsGroup, SWT.NONE);
-        grpType.setText("Usage");
-        grpType.setLayout(new FillLayout(SWT.VERTICAL));
-        
-        Button btnTypeAll = new Button(grpType, SWT.CHECK);
-        btnTypeAll.addSelectionListener(new SelectionAdapter() {
-            @Override
-            public void widgetSelected(SelectionEvent e) {
-            }
-        });
-        btnTypeAll.setText("All");
-        
-        grpFloor = new Group(subStatisticsGroup, SWT.NONE);
-        grpFloor.setText("Floor");
-        grpFloor.setLayout(new FillLayout(SWT.VERTICAL));
-        
-        Button btnFloorAll = new Button(grpFloor, SWT.CHECK);
-        btnFloorAll.addSelectionListener(new SelectionAdapter() {
-            @Override
-            public void widgetSelected(SelectionEvent e) {
-            }
-        });
-        btnFloorAll.setText("All");
-        
+        grpGenProb = new Group(moOptionGroup, SWT.NONE);
+        grpGenProb.setText("Generation probability");
+        grpGenProb.setLayout(new FillLayout(SWT.FILL));
+        txtGenerateProb = new Text(grpGenProb, SWT.BORDER);
+        txtGenerateProb.setText("0.3");
+
+        grpOutput = new Group(moOptionGroup, SWT.NONE);
+        grpOutput.setText("Output file path");
+        grpOutput.setLayout(new FillLayout(SWT.FILL));
+        txtOutputFilePath = new Text(grpOutput, SWT.BORDER);
+        txtOutputFilePath.setText("MF.csv");
+
         statisticsGroup.setEnabled(false);
-        
+
         btnNewButton = new Button(shell, SWT.NONE);
         btnNewButton.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
+                if(layer != null) {
+                    int TIME_DURATION = 0;
+                    int MAX_MO_COUNT = 0;
+                    double GENERATE_PROBABILITY = 0;
+                    try {
+                        TIME_DURATION = Integer.parseInt(txtTimeDuration.getText());
+                    } catch (NumberFormatException nfe) {
+                        txtTimeDuration.setText("Time duration value should be Integer");
+                    }
+                    try {
+                        MAX_MO_COUNT = Integer.parseInt(txtMaxMOCount.getText());
+                    } catch (NumberFormatException nfe) {
+                        txtMaxMOCount.setText("Moving object count value should be Integer");
+                    }
+                    try {
+                        GENERATE_PROBABILITY = Double.parseDouble(txtGenerateProb.getText());
+                    } catch (NumberFormatException nfe) {
+                        txtGenerateProb.setText("MO generation value should be Double");
+                    }
+
+                    Generator gen = new Generator(layer);
+                    int moCount = 0;
+                    Clock clock = gen.getClock();
+                    while(gen.advance()) {
+                        if(clock.getTime() < TIME_DURATION) {
+                            if(clock.getTime() % 5 == 0) {
+                                Iterator sit = layer.getEntrances().iterator();
+                                while(sit.hasNext()) {
+                                    State ent = (State) sit.next();
+                                    if(new Random().nextDouble() <GENERATE_PROBABILITY && moCount < MAX_MO_COUNT ) {
+                                        MovingObject mo = new ClientObject(gen, ent);
+                                        gen.addMovingObject(mo);
+                                        moCount++;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    SimpleMovingFeaturesCSVExporter csvExt = new SimpleMovingFeaturesCSVExporter("Real");
+                    Iterator<MovingObject> it = gen.getMovingObjectIterator();
+                    while(it.hasNext()) {
+                        MovingObject m = it.next();
+                        csvExt.addHistory(m.getId(), m.getHistory());
+                    }
+                    csvExt.bufferedExport("MF.csv");
+                }
             }
         });
         btnNewButton.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 2, 1));
         btnNewButton.setText("Generate");
-
-        
-        /* Table 
-        table = new Table(shell, SWT.BORDER | SWT.FULL_SELECTION);
-        table.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
-        table.setHeaderVisible(true);
-        table.setLinesVisible(true);
-        
-        GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
-        data.heightHint = 200;
-        table.setLayoutData(data);*/
 
         shell.open();
         shell.layout();
