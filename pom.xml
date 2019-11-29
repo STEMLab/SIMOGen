@@ -11,6 +11,7 @@
 	<packaging>pom</packaging>
 
 	<modules>
+		<module>earcut4j</module>
 		<module>core</module>
 		<module>ui</module>
 	</modules>
