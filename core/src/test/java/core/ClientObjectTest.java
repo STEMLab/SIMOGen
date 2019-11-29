@@ -49,10 +49,13 @@ private SpaceLayer layer;
     
     @Before
     public void setUp() throws Exception {
-        SimpleIndoorGMLImporter importer = new SimpleIndoorGMLImporter("src/main/resources/201Building_IndoorGML.xml");
+        SimpleIndoorGMLImporter importer = new SimpleIndoorGMLImporter("src/main/resources/LWM_IndoorGML_1.0.1.gml");
         layer = importer.getSpaceLayer();
     }
-    
+
+    final int TIME_DURATION = 300;
+    final int MAX_MO_COUNT = 30;
+    final double GENERATE_PROBABILITY = 0.2;
     @Test
     public void test() throws Exception {
         Generator gen = new Generator(layer);
@@ -62,16 +65,14 @@ private SpaceLayer layer;
         gen.addMovingObject(mo);*/
         
         int moCount = 0;
-        double genProb = 0.2;
         Clock clock = gen.getClock();
         while(gen.advance()) {
-            
-            if(clock.getTime() < 300) {
+            if(clock.getTime() < TIME_DURATION) {
                 if(clock.getTime() % 5 == 0) {
                     Iterator sit = layer.getEntrances().iterator();
                     while(sit.hasNext()) {
                         State ent = (State) sit.next();
-                        if(new Random().nextDouble() <genProb && moCount < 30 ) {
+                        if(new Random().nextDouble() <GENERATE_PROBABILITY && moCount < MAX_MO_COUNT ) {
                             MovingObject mo = new ClientObject(gen, ent);
                             gen.addMovingObject(mo);
                             moCount++;

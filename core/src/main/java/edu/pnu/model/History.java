@@ -34,19 +34,14 @@ import com.vividsolutions.jts.geom.Coordinate;
  *
  */
 public class History {
-    
     private double time;
     private Coordinate coord;
-    
-    private Map<String, Object> userData = new HashMap<String, Object>();
-    
-    public String getSchema() {
-        return null;
-    }
+    private Map<String, Object> userData;
     
     public History(double time, Coordinate coord) {
         this.time = time;
         this.coord = coord;
+        userData = new HashMap<>();
     }
     
     public double getTime() {

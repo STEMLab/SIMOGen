@@ -55,7 +55,7 @@ private SpaceLayer layer;
     
     @Before
     public void setUp() throws Exception {
-        SimpleIndoorGMLImporter importer = new SimpleIndoorGMLImporter("src/main/resources/201Building_IndoorGML.xml");
+        SimpleIndoorGMLImporter importer = new SimpleIndoorGMLImporter("src/main/resources/LWM_IndoorGML_1.0.1.gml");
         layer = importer.getSpaceLayer();
     }
     
@@ -78,7 +78,10 @@ private SpaceLayer layer;
         } while(path.size() == 0);
         return random;
     }
-    
+
+    final int TIME_DURATION = 300;
+    final int MAX_MO_COUNT = 10;
+    final double GENERATE_PROBABILITY = 0.2;
     @Test
     public void test() throws Exception {
         Generator gen = new Generator(layer);
@@ -89,20 +92,19 @@ private SpaceLayer layer;
         MovingObject mo = new EmployeeObject(gen, random, random);
         gen.addMovingObject(mo);
         
-        int count = 0;
+        int moCount = 0;
         Clock clock = gen.getClock();
-        
         while(gen.advance()) {
-            if(clock.getTime() < 300) {
+            if(clock.getTime() < TIME_DURATION) {
                 if(clock.getTime() % 5 == 0) {
                     sit = layer.getEntrances().iterator();
                     while(sit.hasNext()) {
                         State ent = (State) sit.next();
-                        if(new Random().nextDouble() < 0.2 && count < 10 ) {
+                        if(new Random().nextDouble() < GENERATE_PROBABILITY && moCount < MAX_MO_COUNT ) {
                             random = getRandomState(ent);
                             mo = new EmployeeObject(gen, ent, random);
                             gen.addMovingObject(mo);
-                            count ++;
+                            moCount ++;
                         }
                     }
                 }
