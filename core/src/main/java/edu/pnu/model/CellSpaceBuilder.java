@@ -25,13 +25,9 @@
 package edu.pnu.model;
 
 import java.util.Map;
-
 import org.apache.log4j.Logger;
-
-import edu.pnu.core.Generator;
 import edu.pnu.model.primal.CellSpace;
-import edu.pnu.stemlab.model.geometry.Polygon;
-import edu.pnu.stemlab.model.geometry.Solid;
+import com.vividsolutions.jts.geom.Polygon;
 
 /**
  * @author hgryoo
@@ -43,14 +39,12 @@ public class CellSpaceBuilder {
     private String id;
     
     private Polygon polygon;
-    private Solid solid;
     
     private Map<Object, Object> userData;
     
     public void reset() {
         id = null;
         polygon = null;
-        solid = null;
         userData = null;
     }
     
@@ -58,21 +52,13 @@ public class CellSpaceBuilder {
         this.polygon = p;
         //TODO : make box
     }
-    
-    public void setGeometry3D(Solid s) {
-        this.solid = s;
-        //TODO : make floor plan
-    }
-    
+
     public CellSpace build() throws IllegalArgumentException {
-        
         if(id == null) {
             LOGGER.error("Id is missing");
             throw new IllegalArgumentException();
         }
-        
-        
-        
+
         return new CellSpace(id);
     }
 }

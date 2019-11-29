@@ -47,7 +47,7 @@ private SpaceLayer layer;
     
     @Before
     public void setUp() throws Exception {
-        SimpleIndoorGMLImporter importer = new SimpleIndoorGMLImporter("src/main/resources/SAMPLE_DATA_LWM_2D.gml");
+        SimpleIndoorGMLImporter importer = new SimpleIndoorGMLImporter("src/main/resources/201Building_IndoorGML.xml");
         layer = importer.getSpaceLayer();
     }
     
@@ -61,29 +61,18 @@ private SpaceLayer layer;
             MovingObject mo = new MovingObject(gen, s);
             gen.addMovingObject(mo);
         }
-        
-        /*State s = (State) sit.next();
-        MovingObject mo = new MovingObject(gen, s);
-        gen.addMovingObject(mo);*/
-        
+
         int count = 0;
         while(gen.advance()) {
-            
             if(count < 10) {
                 sit = layer.getEntrances().iterator();
                 while(sit.hasNext()) {
                     State s = (State) sit.next();
                     MovingObject mo = new MovingObject(gen, s);
                     gen.addMovingObject(mo);
+                    count++;
                 }
             }
-            count++;
-            /*if(new Random().nextInt(10) < 4 && idx < 100) {
-                for(State s : ents) {
-                    MovingObject m1 = new MovingObject(gen, s);
-                    gen.addMovingObject(m1);
-                }
-            }*/
         }
         
         SimpleMovingFeaturesCSVExporter csvExt = new SimpleMovingFeaturesCSVExporter("realTest");

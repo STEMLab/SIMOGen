@@ -63,9 +63,7 @@ public class SimpleIndoorGMLImporter {
     public static void main(String[] args) {
         try {
             SimpleIndoorGMLImporter importer = new SimpleIndoorGMLImporter("src/main/resources/SAMPLE_DATA_LWM_2D.gml");
-            
             SpaceLayer l = importer.getSpaceLayer();
-            
             System.out.println(l);
         } catch (Exception e) {
             // TODO Auto-generated catch block

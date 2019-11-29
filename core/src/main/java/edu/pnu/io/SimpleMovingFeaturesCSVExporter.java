@@ -43,8 +43,8 @@ import edu.pnu.model.History;
  */
 public class SimpleMovingFeaturesCSVExporter {
     private String id; 
-    private Map<String, List<History>> trajectory = new HashMap<String, List<History>> ();
-    private List<CSVOutput> outputList = new LinkedList<CSVOutput>();
+    private Map<String, List<History>> trajectory = new HashMap<>();
+    private List<CSVOutput> outputList = new LinkedList<>();
     
     private Date startTime = new Date();
     
@@ -67,7 +67,8 @@ public class SimpleMovingFeaturesCSVExporter {
         public String id;
         public double start;
         public double end;
-        
+        public Date startTime;
+        public Date endTime;
         public String sCoord;
         public String eCoord;
         
@@ -85,7 +86,7 @@ public class SimpleMovingFeaturesCSVExporter {
     }
     
     public void bufferedExport(String path) {
-        
+        long duration = 0;
         for( Map.Entry<String, List<History>> elem : trajectory.entrySet() ){
             
             String mvId = elem.getKey();
@@ -100,12 +101,17 @@ public class SimpleMovingFeaturesCSVExporter {
                 CSVOutput output = new CSVOutput();
                 output.id = mvId;
                 output.start = prev.getTime();
+                output.startTime = new Date(startTime.getTime() + (long) (prev.getTime() * 1000));
                 output.end = next.getTime();
+                output.endTime = new Date(startTime.getTime() + (long) (next.getTime() * 1000));
                 output.sCoord = SimpleIOUtils.coordinateToStringFormat(prev.getCoord(), 5);
                 output.eCoord = SimpleIOUtils.coordinateToStringFormat(next.getCoord(), 5);
                 output.userData = prev.getUserDataMap();
                 outputList.add(output);
                 prev = next;
+
+                if(duration < next.getTime())
+                    duration = (long) next.getTime();
             }
         }
         
@@ -116,21 +122,21 @@ public class SimpleMovingFeaturesCSVExporter {
             writer = new BufferedWriter(new FileWriter(new File(path.toString())));
             
             SimpleDateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-            
-            writer.write("@stboundedby,urn:x-ogc:def:crs:EPSG:6.6:4326,3D,50.23 9.23 0,50.31 9.27 0," + dFormat.format(startTime) + ",2012-01-17T12:49:40Z,sec");
+            Date endTime = new Date(startTime.getTime() + duration * 1000);
+            writer.write("@stboundedby,urn:x-ogc:def:crs:EPSG:6.6:4326,3D,50.23 9.23 0,50.31 9.27 0," + dFormat.format(startTime) + "," + dFormat.format(endTime) + ",sec");
             writer.newLine();
-            writer.write("@columns,mfidref,trajectory,\"typecode\",xsd:integer");
+            writer.write("@mfidref,startTime,endTime,startCoord,endCoord,\"typecode\"");
             writer.newLine();
             
             for(CSVOutput output : outputList) {
                 writer.write(output.id);
                 writer.write(",");
-                writer.write(String.valueOf(output.start));
+                writer.write(dFormat.format(output.startTime));
                 writer.write(",");
-                writer.write(String.valueOf(output.end));
+                writer.write(dFormat.format(output.endTime));
                 writer.write(",");
                 writer.write(output.sCoord);
-                writer.write(" ");
+                writer.write(",");
                 writer.write(output.eCoord);
                 writer.write(",");
                 writer.write(String.valueOf(output.userData.get("TYPE")));

@@ -1,7 +1,7 @@
 /*
  * Indoor Moving Objects Generator
  * Copyright (c) 2016 Pusan National University
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
  * "Software"), to deal in the Software without restriction, including
@@ -9,10 +9,10 @@
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
  * the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be
  * included in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -20,7 +20,7 @@
  * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- * 
+ *
  */
 package edu.pnu.model.primal;
 
@@ -32,6 +32,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.vividsolutions.jts.geom.GeometryFactory;
 import org.opengis.geometry.primitive.Solid;
 
 import com.vividsolutions.jts.geom.Coordinate;
@@ -46,117 +47,121 @@ import edu.pnu.util.GeometryUtil;
 
 /**
  * @author hgryoo
- *
  */
 public class CellSpace {
-    
+
     private String id;
-    
     private State duality;
-    
+
     /* Geometries */
     private Polygon geometry2D;
-    private Solid   geometry3D;
-    
+    private Solid geometry3D;
     private Map<Object, Object> userData;
-    
+    private Set<MovingObject> mos = new HashSet<>();
+    private PlanarPolygon3D planarPolygon = null;
+    private List<Polygon> triangles = null;
+    private Map<Polygon, List<Polygon>> adjacencyTriangle = new HashMap<>();
+
     public CellSpace(String id) {
         this.id = id;
     }
-    
+
     public CellSpace(String id, Polygon poly) {
         this(id);
         this.geometry2D = poly;
     }
-    
-    public CellSpace(String id, Polygon polygon, Solid solid, State duality, Map userData) {
+
+    public CellSpace(String id, Polygon polygon, Map userData) {
         this(id);
         this.geometry2D = polygon;
-        this.geometry3D = solid;
-        this.duality = duality;
         this.userData = userData;
     }
 
     public String getId() {
         return id;
     }
-    
+
     public void setId(String id) {
         this.id = id;
     }
-    
+
     public State getDuality() {
         return duality;
     }
-    
+
     public void setDuality(State duality) {
         this.duality = duality;
+
+        if(this.geometry2D.getCoordinates()[0].z != duality.getPoint().getCoordinate().z) {
+            double minZ = duality.getPoint().getCoordinate().z;
+            Coordinate[] coordinates = this.geometry2D.getCoordinates();
+            for(int i = 0; i < coordinates.length; i++) {
+                coordinates[i].z = minZ;
+            }
+            GeometryFactory geomFac = new GeometryFactory();
+            this.geometry2D = geomFac.createPolygon(coordinates);
+        }
     }
-    
+
     public Polygon getGeometry2D() {
         return geometry2D;
     }
-    
-    private Set<MovingObject> mos = new HashSet<MovingObject>();
+
     public Set<MovingObject> getMovingObjects() {
         return mos;
     }
-    
-    
-    private PlanarPolygon3D planarPolygon = null;
+
     public PlanarPolygon3D getPlanarGeometry2D() {
-        if(planarPolygon == null) {
+        if (planarPolygon == null) {
             planarPolygon = new PlanarPolygon3D(geometry2D);
         }
         return planarPolygon;
     }
-    
-    private List<Polygon> triangles = null;
-    private Map<Polygon, List<Polygon>> adjacencyTriangle = new HashMap<Polygon, List<Polygon>>();
+
     public List<Polygon> getTriangles() {
-        if(triangles == null) {
-            triangles = new ArrayList<Polygon>();
-            
+        if (triangles == null) {
+            triangles = new ArrayList<>();
+
             Coordinate[] coords = geometry2D.getCoordinates();
             double[] coordv = new double[(coords.length - 1) * 3];
-            
+
             int idx = 0;
-            for(int i = 0; i < coords.length - 1; i++) {
+            for (int i = 0; i < coords.length - 1; i++) {
                 coordv[idx] = coords[i].x;
                 coordv[idx + 1] = coords[i].y;
                 coordv[idx + 2] = coords[i].z;
                 idx += 3;
             }
-            
+
             Map<Coordinate, Set<Polygon>> cIdx = new HashMap<Coordinate, Set<Polygon>>();
-            for(Coordinate c : coords) {
-                cIdx.put(c, new HashSet<Polygon>());
+            for (Coordinate c : coords) {
+                cIdx.put(c, new HashSet<>());
             }
-            
+
             List<Integer> tIdx = Earcut.earcut(coordv, null, 3);
-            for(int i = 0; i < tIdx.size(); i += 3) {
+            for (int i = 0; i < tIdx.size(); i += 3) {
                 Coordinate c1 = coords[tIdx.get(i)];
                 Coordinate c2 = coords[tIdx.get(i + 1)];
                 Coordinate c3 = coords[tIdx.get(i + 2)];
 
-                Polygon t = GeometryUtil.getGeometryFactory().createPolygon(new Coordinate[] {c1, c2, c3, c1} );
+                Polygon t = GeometryUtil.getGeometryFactory().createPolygon(new Coordinate[]{c1, c2, c3, c1});
                 triangles.add(t);
-                adjacencyTriangle.put(t, new ArrayList<Polygon>());
-                
+                adjacencyTriangle.put(t, new ArrayList<>());
+
                 cIdx.get(c1).add(t);
                 cIdx.get(c2).add(t);
                 cIdx.get(c3).add(t);
             }
-            
-            for(int i = 0; i < coords.length - 1; i++) {
-                for(int j = i + 1; j < coords.length; j++) {
-                    Set<Polygon> intersection = new HashSet<Polygon>(cIdx.get(coords[i]));
+
+            for (int i = 0; i < coords.length - 1; i++) {
+                for (int j = i + 1; j < coords.length; j++) {
+                    Set<Polygon> intersection = new HashSet<>(cIdx.get(coords[i]));
                     intersection.retainAll(cIdx.get(coords[j]));
-                    
-                    if(intersection.size() > 1) {
-                        List<Polygon> ts = new ArrayList<Polygon>(intersection);
-                        for(int k = 0; k < ts.size() - 1; k++) {
-                            for(int l = k + 1; l < ts.size(); l++) {
+
+                    if (intersection.size() > 1) {
+                        List<Polygon> ts = new ArrayList<>(intersection);
+                        for (int k = 0; k < ts.size() - 1; k++) {
+                            for (int l = k + 1; l < ts.size(); l++) {
                                 adjacencyTriangle.get(ts.get(k)).add(ts.get(l));
                                 adjacencyTriangle.get(ts.get(l)).add(ts.get(k));
                             }
@@ -164,55 +169,54 @@ public class CellSpace {
                     }
                 }
             }
-            
-            
+
+
         }
         return triangles;
     }
-    
+
     public List<Polygon> getAdjacencyTriangle(Polygon t) {
-        if(triangles == null) {
+        if (triangles == null) {
             getTriangles();
         }
         return adjacencyTriangle.get(t);
     }
-    
+
     public double getTriangleArea(Triangle t) {
         return t.area3D();
     }
-    
+
     public Polygon getTriangle(Coordinate c) {
-        
+
         Polygon result = null;
-        for(Polygon p : getTriangles()) {
-            if(GeometryUtil.pointInTriangle(GeometryUtil.getPolygontoTriangle(p), c)) {
+        for (Polygon p : getTriangles()) {
+            if (GeometryUtil.pointInTriangle(GeometryUtil.getPolygontoTriangle(p), c)) {
                 result = p;
                 break;
             }
         }
-        
-        if(result == null) {
+
+        if (result == null) {
             result = GeometryUtil.getNearestPolygon(getTriangles(), c);
         }
-        
-        
+
+
         return result;
     }
-    
-    
+
     public void setGeometry2D(Polygon geom) {
         this.geometry2D = geom;
     }
-    
+
     public void addUserData(Object key, Object value) {
-        if(userData == null) {
-            userData = new HashMap<Object, Object>();
+        if (userData == null) {
+            userData = new HashMap<>();
         }
         userData.put(key, value);
     }
-    
+
     public Map<Object, Object> getUserData() {
-        if(userData == null) {
+        if (userData == null) {
             return Collections.emptyMap();
         } else {
             return userData;
@@ -223,7 +227,4 @@ public class CellSpace {
     public String toString() {
         return "CellSpace [id=" + id + ", geometry2D=" + geometry2D + "]";
     }
-    
-    
-    
 }
