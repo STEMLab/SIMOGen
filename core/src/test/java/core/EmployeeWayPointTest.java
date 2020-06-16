@@ -79,10 +79,10 @@ private SpaceLayer layer;
         return random;
     }
 
-    final int TIME_DURATION = 300;
+    final int TIME_DURATION = 60;
     final int MAX_MO_COUNT = 10;
     final double GENERATE_PROBABILITY = 0.2;
-    @Test
+    /*@Test
     public void test() throws Exception {
         Generator gen = new Generator(layer);
 
@@ -109,23 +109,6 @@ private SpaceLayer layer;
                     }
                 }
             }
-            
-            /*if(count < 10) {
-                sit = layer.getEntrances().iterator();
-                while(sit.hasNext()) {
-                    State s = (State) sit.next();
-                    State random = getRandomState(s);
-                    MovingObject mo = new EmployeeObject(gen, s, random);
-                    gen.addMovingObject(mo);
-                }
-            }
-            count++;*/
-            /*if(new Random().nextInt(10) < 4 && idx < 100) {
-                for(State s : ents) {
-                    MovingObject m1 = new MovingObject(gen, s);
-                    gen.addMovingObject(m1);
-                }
-            }*/
         }
         
         SimpleMovingFeaturesCSVExporter csvExt = new SimpleMovingFeaturesCSVExporter("realTest");
@@ -135,6 +118,6 @@ private SpaceLayer layer;
             csvExt.addHistory(m.getId(), m.getHistory());
         }
         csvExt.bufferedExport("target/employee_walk.csv");
-    }
+    }*/
 
 }

@@ -72,15 +72,10 @@ public class MovingObject {
         return life;
     }
 
-    public MovingObject(Generator gen, Coordinate coord) {
+    public MovingObject(Generator gen, State state) {
         this.life = new Random().nextInt(200) + 1500;
         this.velocity = 1.0f;
         this.gen = gen;
-        // TODO: implement coordinate based MO
-    }
-
-    public MovingObject(Generator gen, State state) {
-        this(gen, state.getPoint().getCoordinate());
         this.start = state;
         this.currentCell = state.getDuality();
         this.coord = GeometryUtil.getRandomPoint(state.getDuality());

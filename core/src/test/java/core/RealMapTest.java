@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
+import edu.pnu.movement.RandomWalk;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,44 +24,33 @@ public class RealMapTest {
     
     @Before
     public void setUp() throws Exception {
-        try {
-            SimpleIndoorGMLImporter importer = new SimpleIndoorGMLImporter("src/main/resources/201Building_IndoorGML.xml");
-            layer = importer.getSpaceLayer();
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        SimpleIndoorGMLImporter importer = new SimpleIndoorGMLImporter("src/main/resources/201Building_IndoorGML.xml");
+        layer = importer.getSpaceLayer();
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
     }
 
     @Test
-    public void test() throws Exception {
+    public void test() {
         Generator gen = new Generator(layer);
-        
+
+        /*
         boolean connected = gen.getGraph().isConnectedComponents();
-        /*if(!connected){
+        if(!connected){
             throw new IllegalArgumentException();
-        }*/
-        
+        }
+        */
+
         Set<State> ents = layer.getEntrances();
-        
         for(State s : ents) {
             MovingObject m1 = new MovingObject(gen, s);
+            m1.setMovement(new RandomWalk(m1));
             gen.addMovingObject(m1);
         }
-        
-        while(gen.advance()) {
-            /*if(new Random().nextInt(10) < 4 && idx < 100) {
-                for(State s : ents) {
-                    MovingObject m1 = new MovingObject(gen, s);
-                    gen.addMovingObject(m1);
-                }
-            }*/
-        }
-        
+        while(gen.advance());
+
         SimpleMovingFeaturesCSVExporter csvExt = new SimpleMovingFeaturesCSVExporter("realTest");
         Iterator<MovingObject> it = gen.getMovingObjectIterator();
         while(it.hasNext()) {
