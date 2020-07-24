@@ -134,8 +134,10 @@ public class Main {
                             State s = (State) it.next();
                             item.setText(0, s.getId());
                             item.setText(1, s.getDuality().getId());
-                            item.setText(2, (String) s.getUserData().get("USAGE"));
-                            item.setText(3, (String) s.getUserData().get("FLOOR"));
+                            if(s.getUserData().containsKey("USAGE"))
+                                item.setText(2, (String) s.getUserData().get("USAGE"));
+                            if(s.getUserData().containsKey("FLOOR"))
+                                item.setText(3, (String) s.getUserData().get("FLOOR"));
                         }
                         
                     } catch (Exception e1) {

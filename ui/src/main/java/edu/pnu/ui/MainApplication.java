@@ -31,7 +31,6 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Shell;
@@ -41,15 +40,13 @@ import org.eclipse.swt.widgets.Shell;
  *
  */
 public class MainApplication {
-    
+
     private static Shell mainShell;
-    
     private static FileDialog dialog;
     
     public static void main (String [] args) {
         Display display = new Display();
         mainShell = new Shell(display);
-        
         mainShell.setLayout(new RowLayout());
 
         // initialize a parent composite with a grid layout manager
