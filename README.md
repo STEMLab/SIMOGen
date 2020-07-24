@@ -1,3 +1,4 @@
+![Java CI with Maven](https://github.com/STEMLab/SIMOGen/workflows/Java%20CI%20with%20Maven/badge.svg?branch=master)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 
 # SIMOGen - Synthetic Indoor Moving Objects Generator
