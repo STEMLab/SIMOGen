@@ -84,13 +84,7 @@ public class Main {
                 FileDialog dialog = new FileDialog (shell, SWT.OPEN);
                 String [] filterNames = new String [] {"IndoorGML File", "All Files (*)"};
                 String [] filterExtensions = new String [] {"*.xml;*.gml;*.igml;", "*"};
-                String filterPath = "/";
-                String platform = SWT.getPlatform();
-                if (platform.equals("win32")) {
-                        filterNames = new String [] {"IndoorGML File", "All Files (*.*)"};
-                        filterExtensions = new String [] {".xml;*.gml;*.igml;", "*.*"};
-                        filterPath = "c:\\";
-                }
+                String filterPath = System.getProperty("user.dir");
                 dialog.setFilterNames (filterNames);
                 dialog.setFilterExtensions (filterExtensions);
                 dialog.setFilterPath (filterPath);
@@ -134,8 +128,12 @@ public class Main {
                             State s = (State) it.next();
                             item.setText(0, s.getId());
                             item.setText(1, s.getDuality().getId());
-                            item.setText(2, (String) s.getUserData().get("USAGE"));
-                            item.setText(3, (String) s.getUserData().get("FLOOR"));
+                            if(s.getUserData().containsKey("USAGE"))
+                                item.setText(2, (String) s.getUserData().get("USAGE"));
+                            if(s.getUserData().containsKey("FLOOR"))
+                                item.setText(3, (String) s.getUserData().get("FLOOR"));
+                            else if(s.getUserData().containsKey("STOREY"))
+                                item.setText(3, (String) s.getUserData().get("STOREY"));
                         }
                         
                     } catch (Exception e1) {

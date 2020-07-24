@@ -85,7 +85,11 @@ public class RandomWayPointNG implements Movement {
     }
 
     private Coordinate getNoisedCoordinate(Coordinate origin, State s) {
-        Polygon currentPoly = s.getDuality().getTriangle(origin);
+        Polygon currentPoly;
+        if(s.getDuality() != null)
+            currentPoly = s.getDuality().getTriangle(origin);
+        else
+            currentPoly = layer.getCellSpace(origin).getTriangle(origin);
 
         if (currentPoly == null) {
             System.out.println();
@@ -178,7 +182,11 @@ public class RandomWayPointNG implements Movement {
             nextStep = next;
             if (localPath.isEmpty()) {
                 next = null;
-                mo.setCurrentCellSpace(getNextState().getDuality());
+                State nextState = getNextState();
+                if(nextState.getDuality() != null)
+                    mo.setCurrentCellSpace(nextState.getDuality());
+                else
+                    mo.setCurrentCellSpace(layer.getCellSpace(nextState.getPoint().getCoordinate()));
 
                 String type = (String) mo.getCurrentCellSpace().getUserData().get("USAGE");
                 if (type == null) {

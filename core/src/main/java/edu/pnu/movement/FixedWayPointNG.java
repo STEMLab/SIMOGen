@@ -147,8 +147,12 @@ public class FixedWayPointNG implements Movement {
             nextStep = next;
             if(localPath.isEmpty()) {
                 next = null;
-                
-                mo.setCurrentCellSpace(getNextState().getDuality());
+                State nextState = getNextState();
+                if(nextState.getDuality() != null)
+                    mo.setCurrentCellSpace(nextState.getDuality());
+                else
+                    mo.setCurrentCellSpace(layer.getCellSpace(nextState.getPoint().getCoordinate()));
+
                 String type = (String) mo.getCurrentCellSpace().getUserData().get("USAGE");
                 if(type == null) {
                     mo.setVelocity(1.0);
