@@ -241,10 +241,12 @@ public class Main {
                                 Iterator sit = layer.getEntrances().iterator();
                                 while(sit.hasNext()) {
                                     State ent = (State) sit.next();
-                                    if(new Random().nextDouble() <GENERATE_PROBABILITY && moCount < MAX_MO_COUNT ) {
+                                    if(new Random().nextDouble() < GENERATE_PROBABILITY
+                                            && moCount < MAX_MO_COUNT ) {
                                         MovingObject mo = new ClientObject(gen, ent);
                                         gen.addMovingObject(mo);
                                         moCount++;
+                                        System.out.println("MO Count : " + moCount);
                                     }
                                 }
                             }
@@ -257,7 +259,8 @@ public class Main {
                         MovingObject m = it.next();
                         csvExt.addHistory(m.getId(), m.getHistory());
                     }
-                    csvExt.bufferedExport("MF.csv");
+                    String outputPath = txtOutputFilePath.getText();
+                    csvExt.bufferedExport(outputPath);
                 }
             }
         });
