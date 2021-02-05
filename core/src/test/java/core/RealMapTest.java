@@ -24,7 +24,7 @@ public class RealMapTest {
     
     @Before
     public void setUp() throws Exception {
-        SimpleIndoorGMLImporter importer = new SimpleIndoorGMLImporter("src/main/resources/201Building_IndoorGML.xml");
+        SimpleIndoorGMLImporter importer = new SimpleIndoorGMLImporter("src/main/resources/Building 201_IndoorGML.gml");
         layer = importer.getSpaceLayer();
     }
 
