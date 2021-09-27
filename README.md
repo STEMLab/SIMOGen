@@ -13,7 +13,7 @@ The follwing tools are required to build OpenGDS/Conversion:
 ```
 1. clone this project
 2. mvn install -DskipTests
-3. java ui/SIMOGen.jar (excutable jar)
+3. java -jar ui/SIMOGen.jar
 ```
 
 ## Usage

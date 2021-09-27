@@ -1,15 +1,17 @@
 package edu.pnu.ui;
-
 import java.io.File;
 import java.util.Iterator;
 import java.util.Random;
 import java.util.Set;
-
+import java.util.ArrayList;
+import java.util.List;
 import edu.pnu.core.Clock;
 import edu.pnu.core.Generator;
 import edu.pnu.io.SimpleMovingFeaturesCSVExporter;
 import edu.pnu.model.movingobject.ClientObject;
+import edu.pnu.model.movingobject.EmployeeObject;
 import edu.pnu.model.movingobject.MovingObject;
+import edu.pnu.util.StateDijkstraPathFinder;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -17,10 +19,10 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.*;
 import org.eclipse.swt.layout.FillLayout;
-
 import edu.pnu.io.SimpleIndoorGMLImporter;
 import edu.pnu.model.SpaceLayer;
 import edu.pnu.model.dual.State;
+
 
 public class Main {
     private Shell shell;
@@ -60,10 +62,33 @@ public class Main {
             e.printStackTrace();
         }
     }
-
+    
+    
     /**
      * Open the window.
      */
+    
+   public State getRandomState(State s) {
+  List<State> sameSection = layer.getNodesBySection(
+          (String) s.getDuality().getUserData().get("SECTION"));
+  List<State> roomStates = layer.getNodesByUsage("ROOM");
+  List<State> states = new ArrayList<State>(sameSection);
+  states.retainAll(roomStates);
+  
+  int stateSize = states.size();
+  
+  StateDijkstraPathFinder finder = new StateDijkstraPathFinder(layer);
+  State random = null;
+  List path = null;
+  do {
+      int randNumber = new Random().nextInt(stateSize - 1);
+      random = states.get(randNumber);
+      path = finder.getShortestPath(s, random);
+  } while(path.size() == 0);
+  return random;
+ }
+    
+    
     public void open() {
         Display display = Display.getDefault();
         shell = new Shell();
@@ -231,22 +256,34 @@ public class Main {
                     } catch (NumberFormatException nfe) {
                         txtGenerateProb.setText("MO generation value should be Double");
                     }
-
+                    double GENERATE_PROBABILITY_CLIENT = 1.0 - GENERATE_PROBABILITY;
                     Generator gen = new Generator(layer);
+                    
+                    Iterator sit = layer.getEntrances().iterator();
                     int moCount = 0;
                     Clock clock = gen.getClock();
                     while(gen.advance()) {
                         if(clock.getTime() < TIME_DURATION) {
                             if(clock.getTime() % 5 == 0) {
-                                Iterator sit = layer.getEntrances().iterator();
+                                sit = layer.getEntrances().iterator();
                                 while(sit.hasNext()) {
                                     State ent = (State) sit.next();
-                                    if(new Random().nextDouble() < GENERATE_PROBABILITY
-                                            && moCount < MAX_MO_COUNT ) {
-                                        MovingObject mo = new ClientObject(gen, ent);
-                                        gen.addMovingObject(mo);
+                                    // creating employee
+                                    if(new Random().nextDouble() <= GENERATE_PROBABILITY && moCount < MAX_MO_COUNT) {
+                                    	State random = getRandomState(ent);
+                                    	MovingObject employee = new EmployeeObject(gen, ent, random);
+                                        gen.addMovingObject(employee);
                                         moCount++;
+                                        //System.out.println("employee created");
                                         System.out.println("MO Count : " + moCount);
+                                    }
+                                    // creating client
+                                    else if (new Random().nextDouble() <= GENERATE_PROBABILITY_CLIENT && moCount < MAX_MO_COUNT){ 
+                                    	MovingObject client = new ClientObject(gen, ent);
+                                    	gen.addMovingObject(client);
+                                    	moCount++;
+                                    	//System.out.println("client created");
+                                    	System.out.println("MO Count : " + moCount);
                                     }
                                 }
                             }

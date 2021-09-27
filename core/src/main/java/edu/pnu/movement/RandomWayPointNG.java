@@ -1,7 +1,7 @@
 /*
  * Indoor Moving Objects Generator
  * Copyright (c) 2016 Pusan National University
- *
+ * 
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
  * "Software"), to deal in the Software without restriction, including
@@ -9,10 +9,10 @@
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
  * the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be
  * included in all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -20,7 +20,7 @@
  * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- *
+ * 
  */
 package edu.pnu.movement;
 
@@ -45,102 +45,104 @@ import edu.pnu.util.StateDijkstraPathFinder;
 
 /**
  * @author hgryoo
+ *
  */
 public class RandomWayPointNG implements Movement {
+    
     private int idx = 0;
     private List<State> path;
+    
     private Queue<Coordinate> localPath = new LinkedList<Coordinate>();
+    
     private StateDijkstraPathFinder finder;
     private SpaceLayer layer;
     private Coordinate next = null;
-
+    
     public RandomWayPointNG(SpaceLayer layer, MovingObject mo) {
         this.layer = layer;
         finder = new StateDijkstraPathFinder(layer);
-
+        
         CellSpace currentCell = mo.getCurrentCellSpace();
         State currentState = currentCell.getDuality();
-
+        
         do {
             State destState = getRandomState();
             path = finder.getShortestPath(currentState, destState);
-        } while (path == null);
+        } while(path == null);
     }
-
+    
     private State getRandomState() {
         int stateSize = layer.getNodes().size();
         int randNumber = new Random().nextInt(stateSize - 1);
         return layer.getNodes().get(randNumber);
     }
-
+    
     private State getCurrentState() {
         return path.get(idx);
     }
-
+    
     private State getNextState() {
-        if (idx + 1 < path.size()) {
+        if(idx + 1 < path.size()) {
             return path.get(idx + 1);
         }
         return null;
     }
-
+    
     private Coordinate getNoisedCoordinate(Coordinate origin, State s) {
-        Polygon currentPoly;
-        if(s.getDuality() != null)
-            currentPoly = s.getDuality().getTriangle(origin);
-        else
-            currentPoly = layer.getCellSpace(origin).getTriangle(origin);
-
-        if (currentPoly == null) {
+        Polygon currentPoly = s.getDuality().getTriangle(origin);
+        
+        if(currentPoly == null) {
             System.out.println();
         }
-
+        
         return GeometryUtil.getRandomPoint(currentPoly);
     }
-
+    
     public Coordinate getNext(MovingObject mo, double time) {
-        if (getNextState() == null) {
+        if(getNextState() == null) {
             return null;
         }
-
+        
         Coordinate origin = mo.getCurrentPosition();
-
-        if (next == null) {
-            Transition nextTransition = getCurrentState().getConnectWith(getNextState());
-            Point currentPoint = GeometryUtil.getGeometryFactory().createPoint(origin);
-            Coordinate[] nearestPs = Distance3DOp.nearestPoints(currentPoint, nextTransition.getGeometry());
-
-            for (Coordinate nextCandidate : nearestPs) {
-                if (!origin.equals3D(nextCandidate)) {
-                    Coordinate candidate;
-                    candidate = getNoisedCoordinate(origin, getCurrentState());
-                    localPath.add(candidate);
-                    break;
-                }
-            }
-
-            if (localPath.isEmpty()) {
-                Coordinate noise = getNoisedCoordinate(origin, getCurrentState());
-                localPath.add(noise);
-            }
-
-            Coordinate peek = localPath.peek();
-            Coordinate nextStateCoord = getNextState().getPoint().getCoordinate();
-
-            Coordinate[] coords = nextTransition.getGeometry().getCoordinates();
-            for (Coordinate c : coords) {
-                if (!c.equals3D(nextStateCoord) && !c.equals3D(peek)) {
-                    double dot = Vector3D.dot(peek, nextStateCoord, c, nextStateCoord);
-                    if (dot > 0) {
-                        c = getNoisedCoordinate(c, getCurrentState());
-                        localPath.add(c);
+        
+        if(next == null) {
+            //if(new Random().nextDouble() < 1.1) {
+                Transition nextTransition = getCurrentState().getConnectWith(getNextState());
+                Point currentPoint = GeometryUtil.getGeometryFactory().createPoint(origin);     
+                Coordinate[] nearestPs = Distance3DOp.nearestPoints(currentPoint, nextTransition.getGeometry());
+                
+                for(Coordinate nextCandidate : nearestPs) {
+                    if(!origin.equals3D(nextCandidate)) {
+                        Coordinate candidate = new Coordinate(nextCandidate.x, nextCandidate.y, origin.z);
+                        candidate = getNoisedCoordinate(origin, getCurrentState());
+                        localPath.add(candidate);
+                        break;
                     }
                 }
-            }
-
-            nextStateCoord = getNoisedCoordinate(nextStateCoord, getNextState());
-            localPath.add(nextStateCoord);
-            next = localPath.poll();
+                
+                if(localPath.isEmpty()) {
+                    Coordinate noise = getNoisedCoordinate(origin, getCurrentState());
+                    localPath.add(noise);
+                }
+                
+                Coordinate peek = localPath.peek();
+                Coordinate nextStateCoord = getNextState().getPoint().getCoordinate();
+                
+                Coordinate[] coords = nextTransition.getGeometry().getCoordinates();
+                for(Coordinate c : coords) {
+                    if(!c.equals3D(nextStateCoord) && !c.equals3D(peek)) {
+                        double dot = Vector3D.dot(peek, nextStateCoord, c, nextStateCoord);
+                        if(dot > 0) {
+                            c = getNoisedCoordinate(c, getCurrentState());
+                            localPath.add(c);
+                        }
+                    }
+                }
+                
+                nextStateCoord = getNoisedCoordinate(nextStateCoord, getNextState());
+                localPath.add(nextStateCoord);
+                next = localPath.poll();
+            //}
         }
 
         double totalDist = mo.getVelocity() * time;
@@ -171,41 +173,37 @@ public class RandomWayPointNG implements Movement {
                 //System.out.println(cnt++);
             //} while (true);
         } */
-
+        
         double nextDist = GeometryUtil.distance(origin, next);
         Coordinate nextStep = null;
-
-        if (totalDist < nextDist) {
-            nextStep = GeometryUtil.fromTo(origin, next, totalDist);
-            //totalDist = 0;
-        } else {
-            nextStep = next;
-            if (localPath.isEmpty()) {
-                next = null;
-                State nextState = getNextState();
-                if(nextState.getDuality() != null)
-                    mo.setCurrentCellSpace(nextState.getDuality());
-                else
-                    mo.setCurrentCellSpace(layer.getCellSpace(nextState.getPoint().getCoordinate()));
-
-                String type = (String) mo.getCurrentCellSpace().getUserData().get("USAGE");
-                if (type == null) {
-                    mo.setVelocity(1.0);
-                } else if (type.equalsIgnoreCase("ROOM") || type.equalsIgnoreCase("DOOR")) {
-                    mo.setVelocity(0.4);
-                } else if (type.equalsIgnoreCase("CORRIDOR")) {
-                    mo.setVelocity(1.0);
-                } else {
-                    mo.setVelocity(1.5);
-                }
-
-                idx++;
+        
+        //while(totalDist > 0) {
+            if(totalDist < nextDist) {
+                nextStep = GeometryUtil.fromTo(origin, next, totalDist);
+                totalDist = 0;
             } else {
-                next = localPath.poll();
+                nextStep = next;
+                if(localPath.isEmpty()) {
+                    next = null;
+                    mo.setCurrentCellSpace(getNextState().getDuality());
+                    
+                    String type = (String) mo.getCurrentCellSpace().getUserData().get("USAGE");
+                    if(type.equalsIgnoreCase("ROOM") || type.equalsIgnoreCase("DOOR")) {
+                        mo.setVelocity(0.4);
+                    } else if(type.equalsIgnoreCase("CORRIDOR")) {
+                        mo.setVelocity(1.0);
+                    } else {
+                        mo.setVelocity(1.5);
+                    }
+                    
+                    idx++;
+                } else {
+                    next = localPath.poll();
+                }
+                totalDist -= nextDist;
             }
-            //totalDist -= nextDist;
-        }
-
+        //}
+        
         return nextStep;
     }
 }

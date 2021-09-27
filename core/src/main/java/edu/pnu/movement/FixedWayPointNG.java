@@ -131,9 +131,6 @@ public class FixedWayPointNG implements Movement {
                 localPath.add(nextStateCoord);
                 }
                 next = localPath.poll();
-            //} else {
-            //    next = GeometryUtil.getRandomPoint(getCurrentState().getDuality());
-            //}
         }
         
         double totalDist = mo.getVelocity() * time;
@@ -147,21 +144,15 @@ public class FixedWayPointNG implements Movement {
             nextStep = next;
             if(localPath.isEmpty()) {
                 next = null;
-                State nextState = getNextState();
-                if(nextState.getDuality() != null)
-                    mo.setCurrentCellSpace(nextState.getDuality());
-                else
-                    mo.setCurrentCellSpace(layer.getCellSpace(nextState.getPoint().getCoordinate()));
-
+                
+                mo.setCurrentCellSpace(getNextState().getDuality());
                 String type = (String) mo.getCurrentCellSpace().getUserData().get("USAGE");
-                if(type == null) {
-                    mo.setVelocity(1.0);
-                } else if(type.equalsIgnoreCase("ROOM")) {
-                    mo.setVelocity(0.6);
+                if(type.equalsIgnoreCase("ROOM")) {
+                    mo.setVelocity(0.1);
                 } else if(type.equalsIgnoreCase("CORRIDOR")) {
                     mo.setVelocity(1.0);
                 } else if(type.equalsIgnoreCase("DOOR")) {
-                    mo.setVelocity(0.4);
+                    mo.setVelocity(0.9);
                 } else {
                     mo.setVelocity(1.5);
                 }

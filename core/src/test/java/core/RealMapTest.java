@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-import edu.pnu.movement.RandomWalk;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,33 +23,44 @@ public class RealMapTest {
     
     @Before
     public void setUp() throws Exception {
-        SimpleIndoorGMLImporter importer = new SimpleIndoorGMLImporter("src/main/resources/Building 201_IndoorGML.gml");
-        layer = importer.getSpaceLayer();
+        try {
+            SimpleIndoorGMLImporter importer = new SimpleIndoorGMLImporter("src/main/resources/Lotte World Mall.gml");
+            layer = importer.getSpaceLayer();
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     @After
-    public void tearDown() {
+    public void tearDown() throws Exception {
     }
 
     @Test
-    public void test() {
+    public void test() throws Exception {
         Generator gen = new Generator(layer);
-
-        /*
+        
         boolean connected = gen.getGraph().isConnectedComponents();
-        if(!connected){
+        /*if(!connected){
             throw new IllegalArgumentException();
-        }
-        */
-
+        }*/
+        
         Set<State> ents = layer.getEntrances();
+        
         for(State s : ents) {
             MovingObject m1 = new MovingObject(gen, s);
-            m1.setMovement(new RandomWalk(m1));
             gen.addMovingObject(m1);
         }
-        while(gen.advance());
-
+        
+        while(gen.advance()) {
+            /*if(new Random().nextInt(10) < 4 && idx < 100) {
+                for(State s : ents) {
+                    MovingObject m1 = new MovingObject(gen, s);
+                    gen.addMovingObject(m1);
+                }
+            }*/
+        }
+        
         SimpleMovingFeaturesCSVExporter csvExt = new SimpleMovingFeaturesCSVExporter("realTest");
         Iterator<MovingObject> it = gen.getMovingObjectIterator();
         while(it.hasNext()) {
