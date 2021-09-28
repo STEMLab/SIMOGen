@@ -55,7 +55,7 @@ private SpaceLayer layer;
     
     @Before
     public void setUp() throws Exception {
-        SimpleIndoorGMLImporter importer = new SimpleIndoorGMLImporter("src/test/resources/Lotte World Mall.gml");
+        SimpleIndoorGMLImporter importer = new SimpleIndoorGMLImporter("src/test/resources/LotteWorldMall.gml");
         layer = importer.getSpaceLayer();
     }
     

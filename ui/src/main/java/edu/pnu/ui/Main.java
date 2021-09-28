@@ -256,7 +256,7 @@ public class Main {
                     } catch (NumberFormatException nfe) {
                         txtGenerateProb.setText("MO generation value should be Double");
                     }
-                    double GENERATE_PROBABILITY_CLIENT = 1.0 - GENERATE_PROBABILITY;
+
                     Generator gen = new Generator(layer);
                     
                     Iterator sit = layer.getEntrances().iterator();
@@ -266,23 +266,24 @@ public class Main {
                         if(clock.getTime() < TIME_DURATION) {
                             if(clock.getTime() % 5 == 0) {
                                 sit = layer.getEntrances().iterator();
-                                while(sit.hasNext()) {
+                                while(sit.hasNext() &&  moCount < MAX_MO_COUNT) {
                                     State ent = (State) sit.next();
-                                    // creating employee
-                                    if(new Random().nextDouble() <= GENERATE_PROBABILITY && moCount < MAX_MO_COUNT) {
+                                    // creating employee  
+                                    double randomNum = new Random().nextDouble();
+                                    if (randomNum <= GENERATE_PROBABILITY) {
                                     	State random = getRandomState(ent);
                                     	MovingObject employee = new EmployeeObject(gen, ent, random);
                                         gen.addMovingObject(employee);
                                         moCount++;
-                                        //System.out.println("employee created");
+                                        System.out.println("employee created");
                                         System.out.println("MO Count : " + moCount);
                                     }
                                     // creating client
-                                    else if (new Random().nextDouble() <= GENERATE_PROBABILITY_CLIENT && moCount < MAX_MO_COUNT){ 
+                                    if (randomNum <= (1-GENERATE_PROBABILITY)) { 
                                     	MovingObject client = new ClientObject(gen, ent);
                                     	gen.addMovingObject(client);
                                     	moCount++;
-                                    	//System.out.println("client created");
+                                    	System.out.println("client created");
                                     	System.out.println("MO Count : " + moCount);
                                     }
                                 }

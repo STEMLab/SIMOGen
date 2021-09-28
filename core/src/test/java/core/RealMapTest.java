@@ -24,7 +24,7 @@ public class RealMapTest {
     @Before
     public void setUp() throws Exception {
         try {
-            SimpleIndoorGMLImporter importer = new SimpleIndoorGMLImporter("src/main/resources/Lotte World Mall.gml");
+            SimpleIndoorGMLImporter importer = new SimpleIndoorGMLImporter("src/main/resources/LotteWorldMall.gml");
             layer = importer.getSpaceLayer();
         } catch (Exception e) {
             // TODO Auto-generated catch block
