@@ -258,33 +258,35 @@ public class Main {
                     }
 
                     Generator gen = new Generator(layer);
-                    
                     Iterator sit = layer.getEntrances().iterator();
                     int moCount = 0;
                     Clock clock = gen.getClock();
+                    int expectedEmployeeN = (int)(MAX_MO_COUNT * GENERATE_PROBABILITY);
+                    int expectedClientN = MAX_MO_COUNT - expectedEmployeeN;
+                    int checkEmpl = 0;
+                    int checkClient = 0;
                     while(gen.advance()) {
                         if(clock.getTime() < TIME_DURATION) {
                             if(clock.getTime() % 5 == 0) {
                                 sit = layer.getEntrances().iterator();
-                                while(sit.hasNext() &&  moCount < MAX_MO_COUNT) {
+                                while(sit.hasNext()) {
                                     State ent = (State) sit.next();
                                     // creating employee  
-                                    double randomNum = new Random().nextDouble();
-                                    if (randomNum <= GENERATE_PROBABILITY) {
+                                    if (checkEmpl < expectedEmployeeN && (checkEmpl+checkClient) < MAX_MO_COUNT) {
                                     	State random = getRandomState(ent);
                                     	MovingObject employee = new EmployeeObject(gen, ent, random);
                                         gen.addMovingObject(employee);
-                                        moCount++;
-                                        System.out.println("employee created");
-                                        System.out.println("MO Count : " + moCount);
+                                        checkEmpl++;
+                                        System.out.println("Employee created");
+                                        System.out.println("Employee Count : " + checkEmpl);
                                     }
                                     // creating client
-                                    if (randomNum <= (1-GENERATE_PROBABILITY)) { 
+                                    if (checkClient < expectedClientN && (checkEmpl+checkClient) < MAX_MO_COUNT) {  
                                     	MovingObject client = new ClientObject(gen, ent);
                                     	gen.addMovingObject(client);
-                                    	moCount++;
-                                    	System.out.println("client created");
-                                    	System.out.println("MO Count : " + moCount);
+                                    	checkClient++;
+                                    	System.out.println("Client created");
+                                    	System.out.println("Client Count : " + checkClient);
                                     }
                                 }
                             }
