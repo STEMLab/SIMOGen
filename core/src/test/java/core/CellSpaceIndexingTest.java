@@ -48,7 +48,7 @@ public class CellSpaceIndexingTest {
     
     @Before
     public void setUp() throws Exception {
-        SimpleIndoorGMLImporter importer = new SimpleIndoorGMLImporter("src/main/resources/Building313.gml");
+        SimpleIndoorGMLImporter importer = new SimpleIndoorGMLImporter("src/main/resources/test.xml");
         layer = importer.getSpaceLayer();
     }
     
@@ -74,7 +74,7 @@ public class CellSpaceIndexingTest {
             String url = "jdbc:postgresql://localhost:5432/sfcgal"; 
             Connection conn = DriverManager.getConnection(url, "postgres", "csh9264");
             
-            SimpleIndoorGMLImporter importer = new SimpleIndoorGMLImporter("src/main/resources/Building313.gml");
+            SimpleIndoorGMLImporter importer = new SimpleIndoorGMLImporter("src/main/resources/test.xml");
             SpaceLayer layer = importer.getSpaceLayer();
             layer.buildIndex();
             
