@@ -49,10 +49,13 @@ private SpaceLayer layer;
     
     @Before
     public void setUp() throws Exception {
-        SimpleIndoorGMLImporter importer = new SimpleIndoorGMLImporter("src/test/resources/LotteWorldMall.gml");
+        SimpleIndoorGMLImporter importer = new SimpleIndoorGMLImporter("src/main/resources/LotteWorldMall.gml");
         layer = importer.getSpaceLayer();
     }
-    
+
+    final int TIME_DURATION = 300;
+    final int MAX_MO_COUNT = 30;
+    final double GENERATE_PROBABILITY = 0.2;
     @Test
     public void test() throws Exception {
         Generator gen = new Generator(layer);
@@ -61,43 +64,22 @@ private SpaceLayer layer;
         MovingObject mo = new MovingObject(gen, s);
         gen.addMovingObject(mo);*/
         
-        int count = 0;
+        int moCount = 0;
         Clock clock = gen.getClock();
         while(gen.advance()) {
-            
-            if(clock.getTime() < 300) {
+            if(clock.getTime() < TIME_DURATION) {
                 if(clock.getTime() % 5 == 0) {
                     Iterator sit = layer.getEntrances().iterator();
                     while(sit.hasNext()) {
                         State ent = (State) sit.next();
-                        if(new Random().nextDouble() < 0.2 && count < 30 ) {
+                        if(new Random().nextDouble() <GENERATE_PROBABILITY && moCount < MAX_MO_COUNT ) {
                             MovingObject mo = new ClientObject(gen, ent);
                             gen.addMovingObject(mo);
-                            count++;
+                            moCount++;
                         }
                     }
                 }
             }
-            
-            /*if(count < 10) {
-                sit = layer.getEntrances().iterator();
-                while(sit.hasNext()) {
-                    State s = (State) sit.next();
-                    State random = getRandomState(s);
-                    MovingObject mo = new EmployeeObject(gen, s, random);
-                    gen.addMovingObject(mo);
-                }
-            }
-            
-            
-            
-            count++;*/
-            /*if(new Random().nextInt(10) < 4 && idx < 100) {
-                for(State s : ents) {
-                    MovingObject m1 = new MovingObject(gen, s);
-                    gen.addMovingObject(m1);
-                }
-            }*/
         }
         
         SimpleMovingFeaturesCSVExporter csvExt = new SimpleMovingFeaturesCSVExporter("realTest");

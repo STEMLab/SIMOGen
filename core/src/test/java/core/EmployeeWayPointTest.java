@@ -49,13 +49,13 @@ import edu.pnu.util.StateDijkstraPathFinder;
  * @author hgryoo
  *
  */
-public class EmployeeWaypointTest {
+public class EmployeeWayPointTest {
 
 private SpaceLayer layer;
     
     @Before
     public void setUp() throws Exception {
-        SimpleIndoorGMLImporter importer = new SimpleIndoorGMLImporter("src/test/resources/LotteWorldMall.gml");
+        SimpleIndoorGMLImporter importer = new SimpleIndoorGMLImporter("src/main/resources/LotteWorldMall.gml");
         layer = importer.getSpaceLayer();
     }
     
@@ -78,8 +78,11 @@ private SpaceLayer layer;
         } while(path.size() == 0);
         return random;
     }
-    
-    @Test
+
+    final int TIME_DURATION = 60;
+    final int MAX_MO_COUNT = 10;
+    final double GENERATE_PROBABILITY = 0.2;
+    /*@Test
     public void test() throws Exception {
         Generator gen = new Generator(layer);
 
@@ -89,42 +92,23 @@ private SpaceLayer layer;
         MovingObject mo = new EmployeeObject(gen, random, random);
         gen.addMovingObject(mo);
         
-        int count = 0;
+        int moCount = 0;
         Clock clock = gen.getClock();
-        
         while(gen.advance()) {
-            
-            if(clock.getTime() < 300) {
+            if(clock.getTime() < TIME_DURATION) {
                 if(clock.getTime() % 5 == 0) {
                     sit = layer.getEntrances().iterator();
                     while(sit.hasNext()) {
                         State ent = (State) sit.next();
-                        if(new Random().nextDouble() < 0.2 && count < 10 ) {
+                        if(new Random().nextDouble() < GENERATE_PROBABILITY && moCount < MAX_MO_COUNT ) {
                             random = getRandomState(ent);
                             mo = new EmployeeObject(gen, ent, random);
                             gen.addMovingObject(mo);
-                            count ++;
+                            moCount ++;
                         }
                     }
                 }
             }
-            
-            /*if(count < 10) {
-                sit = layer.getEntrances().iterator();
-                while(sit.hasNext()) {
-                    State s = (State) sit.next();
-                    State random = getRandomState(s);
-                    MovingObject mo = new EmployeeObject(gen, s, random);
-                    gen.addMovingObject(mo);
-                }
-            }
-            count++;*/
-            /*if(new Random().nextInt(10) < 4 && idx < 100) {
-                for(State s : ents) {
-                    MovingObject m1 = new MovingObject(gen, s);
-                    gen.addMovingObject(m1);
-                }
-            }*/
         }
         
         SimpleMovingFeaturesCSVExporter csvExt = new SimpleMovingFeaturesCSVExporter("realTest");
@@ -134,6 +118,6 @@ private SpaceLayer layer;
             csvExt.addHistory(m.getId(), m.getHistory());
         }
         csvExt.bufferedExport("target/employee_walk.csv");
-    }
+    }*/
 
 }

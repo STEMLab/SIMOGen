@@ -25,14 +25,17 @@
 package core;
 
 import java.util.Iterator;
+import java.util.Random;
 
+import edu.pnu.model.movingobject.ClientObject;
+import edu.pnu.movement.RandomWalk;
 import org.junit.Before;
 import org.junit.Test;
 
+import edu.pnu.core.Clock;
 import edu.pnu.core.Generator;
 import edu.pnu.io.SimpleIndoorGMLImporter;
 import edu.pnu.io.SimpleMovingFeaturesCSVExporter;
-import edu.pnu.model.MovingObjectNG;
 import edu.pnu.model.SpaceLayer;
 import edu.pnu.model.dual.State;
 import edu.pnu.model.movingobject.MovingObject;
@@ -50,40 +53,38 @@ private SpaceLayer layer;
         SimpleIndoorGMLImporter importer = new SimpleIndoorGMLImporter("src/main/resources/LotteWorldMall.gml");
         layer = importer.getSpaceLayer();
     }
-    
+
+    final int TIME_DURATION = 300;
+    final int MAX_MO_COUNT = 30;
+    final double GENERATE_PROBABILITY = 0.2;
     @Test
     public void test() throws Exception {
         Generator gen = new Generator(layer);
         
-        Iterator sit = layer.getEntrances().iterator();
+        /*Iterator sit = layer.getEntrances().iterator();
         while(sit.hasNext()) {
             State s = (State) sit.next();
             MovingObject mo = new MovingObject(gen, s);
             gen.addMovingObject(mo);
-        }
-        
-        /*State s = (State) sit.next();
-        MovingObject mo = new MovingObject(gen, s);
-        gen.addMovingObject(mo);*/
-        
-        int count = 0;
+        }*/
+
+        int moCount = 0;
+        Clock clock = gen.getClock();
         while(gen.advance()) {
-            
-            if(count < 10) {
-                sit = layer.getEntrances().iterator();
-                while(sit.hasNext()) {
-                    State s = (State) sit.next();
-                    MovingObject mo = new MovingObject(gen, s);
-                    gen.addMovingObject(mo);
+            if(clock.getTime() < TIME_DURATION) {
+                if(clock.getTime() % 5 == 0) {
+                    Iterator sit = layer.getEntrances().iterator();
+                    while (sit.hasNext()) {
+                        State s = (State) sit.next();
+                        if (new Random().nextDouble() < GENERATE_PROBABILITY && moCount < MAX_MO_COUNT) {
+                            MovingObject mo = new MovingObject(gen, s);
+                            mo.setMovement(new RandomWalk(mo));
+                            gen.addMovingObject(mo);
+                            moCount++;
+                        }
+                    }
                 }
             }
-            count++;
-            /*if(new Random().nextInt(10) < 4 && idx < 100) {
-                for(State s : ents) {
-                    MovingObject m1 = new MovingObject(gen, s);
-                    gen.addMovingObject(m1);
-                }
-            }*/
         }
         
         SimpleMovingFeaturesCSVExporter csvExt = new SimpleMovingFeaturesCSVExporter("realTest");

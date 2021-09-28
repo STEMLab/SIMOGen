@@ -53,7 +53,7 @@ private SpaceLayer layer;
     
     @Before
     public void setUp() throws Exception {
-        SimpleIndoorGMLImporter importer = new SimpleIndoorGMLImporter("src/test/resources/LotteWorldMall.gml");
+        SimpleIndoorGMLImporter importer = new SimpleIndoorGMLImporter("src/main/resources/LotteWorldMall.gml");
         layer = importer.getSpaceLayer();
     }
     
@@ -76,14 +76,14 @@ private SpaceLayer layer;
         } while(path.size() == 0);
         return random;
     }
-    
+    /*
     @Test
     public void test() throws Exception {
         Generator gen = new Generator(layer);
 
-        /*State s = (State) sit.next();
-        MovingObject mo = new MovingObject(gen, s);
-        gen.addMovingObject(mo);*/
+        //State s = (State) sit.next();
+        //MovingObject mo = new MovingObject(gen, s);
+        //gen.addMovingObject(mo);
         
         int empolyee = 0;
         int client = 0;
@@ -126,24 +126,7 @@ private SpaceLayer layer;
                     }
                 }
             }
-            
-            
-            /*if(count < 10) {
-                sit = layer.getEntrances().iterator();
-                while(sit.hasNext()) {
-                    State s = (State) sit.next();
-                    State random = getRandomState(s);
-                    MovingObject mo = new EmployeeObject(gen, s, random);
-                    gen.addMovingObject(mo);
-                }
-            }
-            count++;*/
-            /*if(new Random().nextInt(10) < 4 && idx < 100) {
-                for(State s : ents) {
-                    MovingObject m1 = new MovingObject(gen, s);
-                    gen.addMovingObject(m1);
-                }
-            }*/
+
             sum += empolyee + client;
         }
 
@@ -158,5 +141,5 @@ private SpaceLayer layer;
         }
         csvExt.bufferedExport("target/integrated_walk.csv");
     }
-
+    */
 }
