@@ -36,6 +36,8 @@ import org.apache.log4j.Logger;
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.LineString;
+import com.vividsolutions.jts.geom.Polygon;
+import com.vividsolutions.jts.index.strtree.STRtree;
 
 import edu.pnu.model.dual.State;
 import edu.pnu.model.dual.Transition;
@@ -52,15 +54,15 @@ public class SpaceBuilder {
     
     private Map<String, State> statesMap;
     private Map<String, Transition> transitionMap;
-    private Map<String, CellSpace> cellSpaceMap;
+    private Map<String, CellSpace> cellspaceMap;
     
     /* entrances set */
-    private Set<String> entrances = new HashSet<>();
+    private Set<String> entrances = new HashSet<String>();
     
     public SpaceBuilder() {
-        statesMap = new HashMap<>();
-        transitionMap = new HashMap<>();
-        cellSpaceMap = new HashMap<>();
+        statesMap = new HashMap<String, State>();
+        transitionMap = new HashMap<String, Transition>();
+        cellspaceMap = new HashMap<String, CellSpace>();
     }
     
     public boolean hasState(String id) {
@@ -96,15 +98,15 @@ public class SpaceBuilder {
     }
     
     public boolean addCellSpace(CellSpace c) {
-        if(!cellSpaceMap.containsKey(c)) {
-            cellSpaceMap.put(c.getId(), c);
+        if(!cellspaceMap.containsKey(c)) {
+            cellspaceMap.put(c.getId(), c);
             return true;
         }
         return false;
     }
     
     public CellSpace getCellSpace(String id) {
-        return cellSpaceMap.get(id);
+        return cellspaceMap.get(id);
     }
     
     public boolean makeTransition(String id, State a, State b) {
@@ -191,7 +193,7 @@ public class SpaceBuilder {
             sl.addTransition(t);
         }
         
-        Collection<CellSpace> cells = cellSpaceMap.values();
+        Collection<CellSpace> cells = cellspaceMap.values();
         Iterator<CellSpace> cit = cells.iterator();
         while(cit.hasNext()) {
             CellSpace c = cit.next();
