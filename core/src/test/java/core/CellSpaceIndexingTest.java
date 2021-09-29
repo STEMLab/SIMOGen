@@ -43,12 +43,12 @@ import edu.pnu.model.primal.CellSpace;
  *
  */
 public class CellSpaceIndexingTest {
-    
+   /* 
     private SpaceLayer layer;
     
     @Before
     public void setUp() throws Exception {
-        SimpleIndoorGMLImporter importer = new SimpleIndoorGMLImporter("src/main/resources/test.xml");
+        SimpleIndoorGMLImporter importer = new SimpleIndoorGMLImporter("src/main/resources/Building313.gml");
         layer = importer.getSpaceLayer();
     }
     
@@ -67,14 +67,14 @@ public class CellSpaceIndexingTest {
         }
     }
     
-    /*@Test
+    @Test
     public void test() {
         try {
             Class.forName("org.postgresql.Driver"); 
             String url = "jdbc:postgresql://localhost:5432/sfcgal"; 
             Connection conn = DriverManager.getConnection(url, "postgres", "csh9264");
             
-            SimpleIndoorGMLImporter importer = new SimpleIndoorGMLImporter("src/main/resources/test.xml");
+            SimpleIndoorGMLImporter importer = new SimpleIndoorGMLImporter("src/main/resources/Building313.gml");
             SpaceLayer layer = importer.getSpaceLayer();
             layer.buildIndex();
             
